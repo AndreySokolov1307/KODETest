@@ -13,6 +13,11 @@
 		32C090162B9C853A000274EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C090152B9C853A000274EB /* Assets.xcassets */; };
 		32C090192B9C853A000274EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C090172B9C853A000274EB /* LaunchScreen.storyboard */; };
 		32C0902F2B9CAE23000274EB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0902E2B9CAE23000274EB /* User.swift */; };
+		32C090312B9CB1A8000274EB /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C090302B9CB1A8000274EB /* NetworkService.swift */; };
+		32C090332B9CB1B6000274EB /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C090322B9CB1B6000274EB /* Endpoint.swift */; };
+		32C090362B9CB1CF000274EB /* INetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C090352B9CB1CF000274EB /* INetworkService.swift */; };
+		32C090392B9CB1E2000274EB /* IEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C090382B9CB1E2000274EB /* IEndpoint.swift */; };
+		32C0903B2B9CB2A8000274EB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0903A2B9CB2A8000274EB /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		32C090182B9C853A000274EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32C0901A2B9C853A000274EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32C0902E2B9CAE23000274EB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		32C090302B9CB1A8000274EB /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		32C090322B9CB1B6000274EB /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		32C090352B9CB1CF000274EB /* INetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INetworkService.swift; sourceTree = "<group>"; };
+		32C090382B9CB1E2000274EB /* IEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEndpoint.swift; sourceTree = "<group>"; };
+		32C0903A2B9CB2A8000274EB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +132,9 @@
 		32C090262B9C86B4000274EB /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				32C090342B9CB1BC000274EB /* Protocols */,
+				32C090302B9CB1A8000274EB /* NetworkService.swift */,
+				32C090322B9CB1B6000274EB /* Endpoint.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -143,8 +156,18 @@
 		32C090292B9C873F000274EB /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				32C0903A2B9CB2A8000274EB /* Constants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		32C090342B9CB1BC000274EB /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				32C090352B9CB1CF000274EB /* INetworkService.swift */,
+				32C090382B9CB1E2000274EB /* IEndpoint.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,10 +240,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32C090312B9CB1A8000274EB /* NetworkService.swift in Sources */,
 				32C0902F2B9CAE23000274EB /* User.swift in Sources */,
 				32C090112B9C8536000274EB /* ViewController.swift in Sources */,
 				32C0900D2B9C8536000274EB /* AppDelegate.swift in Sources */,
+				32C090392B9CB1E2000274EB /* IEndpoint.swift in Sources */,
+				32C090332B9CB1B6000274EB /* Endpoint.swift in Sources */,
 				32C0900F2B9C8536000274EB /* SceneDelegate.swift in Sources */,
+				32C090362B9CB1CF000274EB /* INetworkService.swift in Sources */,
+				32C0903B2B9CB2A8000274EB /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
