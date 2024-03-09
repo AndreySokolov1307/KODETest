@@ -16,6 +16,17 @@ enum Constants {
             "Content-Type": "application/json",
             "Prefer" : "code=200, example=success"
             ]
-        
+        static let android = "Android"
+        static let ios = "IOS"
+        static let design = "Дизайн"
+        static let management = "Менеджмент"
+        static let qa = "QA"
+        static let backOffice = "Бек-офис"
+        static let frontend = "Frontend"
+        static let hr = "HR"
+        static let pr = "PR"
+        static let backend = "Backend"
+        static let support = "Техподдержка"
+        static let analytics = "Аналитика"
     }
 }

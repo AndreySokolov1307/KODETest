@@ -18,6 +18,7 @@
 		32C090362B9CB1CF000274EB /* INetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C090352B9CB1CF000274EB /* INetworkService.swift */; };
 		32C090392B9CB1E2000274EB /* IEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C090382B9CB1E2000274EB /* IEndpoint.swift */; };
 		32C0903B2B9CB2A8000274EB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0903A2B9CB2A8000274EB /* Constants.swift */; };
+		32C0903D2B9CBEF9000274EB /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0903C2B9CBEF9000274EB /* Department.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		32C090352B9CB1CF000274EB /* INetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INetworkService.swift; sourceTree = "<group>"; };
 		32C090382B9CB1E2000274EB /* IEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEndpoint.swift; sourceTree = "<group>"; };
 		32C0903A2B9CB2A8000274EB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		32C0903C2B9CBEF9000274EB /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				32C0902E2B9CAE23000274EB /* User.swift */,
+				32C0903C2B9CBEF9000274EB /* Department.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				32C090392B9CB1E2000274EB /* IEndpoint.swift in Sources */,
 				32C090332B9CB1B6000274EB /* Endpoint.swift in Sources */,
 				32C0900F2B9C8536000274EB /* SceneDelegate.swift in Sources */,
+				32C0903D2B9CBEF9000274EB /* Department.swift in Sources */,
 				32C090362B9CB1CF000274EB /* INetworkService.swift in Sources */,
 				32C0903B2B9CB2A8000274EB /* Constants.swift in Sources */,
 			);
