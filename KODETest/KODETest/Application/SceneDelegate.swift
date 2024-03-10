@@ -24,6 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func setupNavBarAppereance(_ navBar: UINavigationBar) {
         let navBarAppereance = UINavigationBarAppearance()
         navBarAppereance.shadowColor = .clear
+        navBarAppereance.backgroundColor = Constants.colors.white
         navBar.standardAppearance = navBarAppereance
         navBar.scrollEdgeAppearance = navBarAppereance
     }

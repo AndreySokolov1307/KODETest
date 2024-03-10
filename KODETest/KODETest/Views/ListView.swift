@@ -25,14 +25,12 @@ class ListView: UIView {
     }
     
     private func configureView() {
-        backgroundColor = .systemGray6
+        backgroundColor = Constants.colors.white
         addSubview(tableView)
         addSubview(scopeBar)
         addSubview(lineView)
-        tableView.backgroundColor = .systemCyan
         
         NSLayoutConstraint.activate([
-            
             scopeBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.layout.scopeBarTop),
             scopeBar.leadingAnchor.constraint(equalTo: leadingAnchor),
             scopeBar.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -43,10 +41,12 @@ class ListView: UIView {
             lineView.trailingAnchor.constraint(equalTo: trailingAnchor),
             lineView.heightAnchor.constraint(equalToConstant: Constants.layout.lineViewHeihgt),
             
-            tableView.topAnchor.constraint(equalTo: lineView.bottomAnchor, constant: Constants.layout.tableViewTop),
+            tableView.topAnchor.constraint(equalTo: lineView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
+        tableView.contentInset = Constants.layout.tableViewContentInset
+        tableView.separatorStyle = .none
     }
 }

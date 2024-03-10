@@ -8,12 +8,14 @@
 import Foundation
 
 enum Department: String, Codable, CaseIterable {
-    case android, ios, design, management, qa,
+    case all, android, ios, design, management, qa,
          backOffice = "back_office",
          frontend, hr, pr, backend, support, analytics
     
     var title: String {
         switch self {
+        case .all:
+            return Constants.strings.all
         case .android:
             return Constants.strings.android
         case .ios:
