@@ -21,4 +21,8 @@ struct User: Codable {
     let position: String
     let birthday: String
     let phone: String
+    
+    var fullName: String {
+        firstName + Constants.strings.space + lastName
+    }
 }

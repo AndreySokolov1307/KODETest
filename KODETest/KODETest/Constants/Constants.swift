@@ -10,6 +10,7 @@ import UIKit
 enum Constants {
     enum strings {
         static let emptyString = ""
+        static let space = " "
         static let httpMethodGET: String = "GET"
         static let baseURLString = "https://stoplight.io/mocks/kode-api/trainee-test/331141861"
         static let path = "/users"
@@ -17,6 +18,7 @@ enum Constants {
             "Content-Type": "application/json",
             "Prefer" : "code=200, example=success"
             ]
+        static let all = "Все"
         static let android = "Android"
         static let ios = "IOS"
         static let design = "Дизайн"
@@ -31,6 +33,10 @@ enum Constants {
         static let analytics = "Аналитика"
         static let departmentCellReuseIdentifier = "DepartmentCell"
         static let searchBarPlaceholder = "Введите имя, тег, почту..."
+    }
+    
+    enum numbers {
+        static let loadingTableViewRows = 10
     }
     
     enum layout {
@@ -49,19 +55,52 @@ enum Constants {
         static let searchPositionOffset = UIOffset(horizontal: 6, vertical: 0)
         static let bookmarkPositionOffset = UIOffset(horizontal: -6, vertical: 0)
         static let clearPositionOffset = UIOffset(horizontal: -6, vertical: 0)
+        static let tableViewContentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
+        static let heightForRow: CGFloat = 84
+        static let avatarViewCornerRadius: CGFloat = 36
+        static let titleViewCornerRadius: CGFloat = 8
+        static let subtitleViewCornerRadius: CGFloat = 6
+        static let avatarViewTop: CGFloat = 6
+        static let avatarViewLeading: CGFloat = 16
+        static let avatarViewBottom: CGFloat = -6
+        static let avatarViewHeight: CGFloat = 72
+        static let avatarViewWidth: CGFloat = 72
+        static let titleViewTop: CGFloat = 25
+        static let titleViewLeading: CGFloat = 16
+        static let titleViewHeight: CGFloat = 16
+        static let titleViewWidth: CGFloat = 144
+        static let subtitleViewTop: CGFloat = 6
+        static let subtitleViewHeight: CGFloat = 12
+        static let subtitleViewWidth: CGFloat = 80
+        static let gradientStartPoint = CGPoint(x: 0.0, y: 0.5)
+        static let gradientEndPoint = CGPoint(x: 1.0, y: 0.5)
+        static let avatarImageTop: CGFloat = 6
+        static let avatarImageLeading: CGFloat = 16
+        static let avatarImageBottom: CGFloat = -6
+        static let avatarImageHeight: CGFloat = 72
+        static let avatarImageWidth: CGFloat = 72
+        static let vStackLeading: CGFloat = 16
+        static let birthDateLabelTrailing: CGFloat = -16
     }
     
     enum fonts {
         static let selectedScope = UIFont.systemFont(ofSize: 15, weight: .semibold)
         static let plainScope =  UIFont.systemFont(ofSize: 15, weight: .medium)
         static let searchBar = UIFont.systemFont(ofSize: 15, weight: .medium)
+        static let titleLabel = UIFont.systemFont(ofSize: 16, weight: .medium)
+        static let subtitleLabel = UIFont.systemFont(ofSize: 13, weight: .regular)
+        static let userTagLabel = UIFont.systemFont(ofSize: 14, weight: .medium)
+        static let bithDateLabel = UIFont.systemFont(ofSize: 15, weight: .regular)
     }
     
     enum colors {
         static let purple = UIColor(named: "purple")
         static let grey = UIColor(named: "grey")
+        static let darkGrey = UIColor(named: "darkGrey")
         static let lightGrey = UIColor(named: "lightGrey")
         static let lightGrey2 = UIColor(named: "lightGrey2")
+        static let lightGrey3 = UIColor(named: "lightGrey3")
+        static let lightGrey4 = UIColor(named: "lightGrey4")
         static let white: UIColor = .white
         static let black: UIColor = .black
     }
@@ -74,5 +113,6 @@ enum Constants {
         static let sortSelected = UIImage(named: "sortSelected")
         static let sortPlain = UIImage(named: "sortPlain")
         static let clear = UIImage(named: "clear")
+        static let stub = UIImage(named: "stub")
     }
 }
