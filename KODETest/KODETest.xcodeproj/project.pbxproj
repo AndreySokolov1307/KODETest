@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		32C0900D2B9C8536000274EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0900C2B9C8536000274EB /* AppDelegate.swift */; };
 		32C0900F2B9C8536000274EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0900E2B9C8536000274EB /* SceneDelegate.swift */; };
-		32C090112B9C8536000274EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C090102B9C8536000274EB /* ViewController.swift */; };
+		32C090112B9C8536000274EB /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C090102B9C8536000274EB /* ListViewController.swift */; };
 		32C090162B9C853A000274EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C090152B9C853A000274EB /* Assets.xcassets */; };
 		32C090192B9C853A000274EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C090172B9C853A000274EB /* LaunchScreen.storyboard */; };
 		32C0902F2B9CAE23000274EB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0902E2B9CAE23000274EB /* User.swift */; };
@@ -19,13 +19,19 @@
 		32C090392B9CB1E2000274EB /* IEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C090382B9CB1E2000274EB /* IEndpoint.swift */; };
 		32C0903B2B9CB2A8000274EB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0903A2B9CB2A8000274EB /* Constants.swift */; };
 		32C0903D2B9CBEF9000274EB /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0903C2B9CBEF9000274EB /* Department.swift */; };
+		32C0903F2B9CCF3F000274EB /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0903E2B9CCF3F000274EB /* ListView.swift */; };
+		32C090412B9CD0AE000274EB /* UIVIew+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C090402B9CD0AE000274EB /* UIVIew+Style.swift */; };
+		32C090432B9CD0E9000274EB /* Autolayout+PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C090422B9CD0E9000274EB /* Autolayout+PropertyWrapper.swift */; };
+		32C090472B9CE038000274EB /* ScopeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C090462B9CE038000274EB /* ScopeButton.swift */; };
+		32C090492B9CE16B000274EB /* ScopeBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C090482B9CE16B000274EB /* ScopeBar.swift */; };
+		32C0904D2B9D1DEF000274EB /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0904C2B9D1DEF000274EB /* CustomSearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		32C090092B9C8536000274EB /* KODETest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KODETest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C0900C2B9C8536000274EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32C0900E2B9C8536000274EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		32C090102B9C8536000274EB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		32C090102B9C8536000274EB /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		32C090152B9C853A000274EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32C090182B9C853A000274EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32C0901A2B9C853A000274EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -36,6 +42,12 @@
 		32C090382B9CB1E2000274EB /* IEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEndpoint.swift; sourceTree = "<group>"; };
 		32C0903A2B9CB2A8000274EB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		32C0903C2B9CBEF9000274EB /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
+		32C0903E2B9CCF3F000274EB /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		32C090402B9CD0AE000274EB /* UIVIew+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+Style.swift"; sourceTree = "<group>"; };
+		32C090422B9CD0E9000274EB /* Autolayout+PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Autolayout+PropertyWrapper.swift"; sourceTree = "<group>"; };
+		32C090462B9CE038000274EB /* ScopeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopeButton.swift; sourceTree = "<group>"; };
+		32C090482B9CE16B000274EB /* ScopeBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopeBar.swift; sourceTree = "<group>"; };
+		32C0904C2B9D1DEF000274EB /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +85,6 @@
 				32C090232B9C86A2000274EB /* Views */,
 				32C090222B9C8696000274EB /* Controllers */,
 				32C090262B9C86B4000274EB /* Network */,
-				32C090252B9C86AF000274EB /* Cells */,
 				32C090272B9C86CD000274EB /* Supplementary views */,
 				32C090282B9C86ED000274EB /* Extensions */,
 				32C090292B9C873F000274EB /* Constants */,
@@ -104,7 +115,7 @@
 		32C090222B9C8696000274EB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				32C090102B9C8536000274EB /* ViewController.swift */,
+				32C090102B9C8536000274EB /* ListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -112,6 +123,7 @@
 		32C090232B9C86A2000274EB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				32C0903E2B9CCF3F000274EB /* ListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -123,13 +135,6 @@
 				32C0903C2B9CBEF9000274EB /* Department.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		32C090252B9C86AF000274EB /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		32C090262B9C86B4000274EB /* Network */ = {
@@ -145,6 +150,9 @@
 		32C090272B9C86CD000274EB /* Supplementary views */ = {
 			isa = PBXGroup;
 			children = (
+				32C090462B9CE038000274EB /* ScopeButton.swift */,
+				32C090482B9CE16B000274EB /* ScopeBar.swift */,
+				32C0904C2B9D1DEF000274EB /* CustomSearchBar.swift */,
 			);
 			path = "Supplementary views";
 			sourceTree = "<group>";
@@ -152,6 +160,8 @@
 		32C090282B9C86ED000274EB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				32C090402B9CD0AE000274EB /* UIVIew+Style.swift */,
+				32C090422B9CD0E9000274EB /* Autolayout+PropertyWrapper.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -244,15 +254,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				32C090312B9CB1A8000274EB /* NetworkService.swift in Sources */,
+				32C090432B9CD0E9000274EB /* Autolayout+PropertyWrapper.swift in Sources */,
 				32C0902F2B9CAE23000274EB /* User.swift in Sources */,
-				32C090112B9C8536000274EB /* ViewController.swift in Sources */,
+				32C090112B9C8536000274EB /* ListViewController.swift in Sources */,
 				32C0900D2B9C8536000274EB /* AppDelegate.swift in Sources */,
 				32C090392B9CB1E2000274EB /* IEndpoint.swift in Sources */,
 				32C090332B9CB1B6000274EB /* Endpoint.swift in Sources */,
+				32C090412B9CD0AE000274EB /* UIVIew+Style.swift in Sources */,
+				32C090492B9CE16B000274EB /* ScopeBar.swift in Sources */,
 				32C0900F2B9C8536000274EB /* SceneDelegate.swift in Sources */,
+				32C090472B9CE038000274EB /* ScopeButton.swift in Sources */,
 				32C0903D2B9CBEF9000274EB /* Department.swift in Sources */,
+				32C0903F2B9CCF3F000274EB /* ListView.swift in Sources */,
 				32C090362B9CB1CF000274EB /* INetworkService.swift in Sources */,
 				32C0903B2B9CB2A8000274EB /* Constants.swift in Sources */,
+				32C0904D2B9D1DEF000274EB /* CustomSearchBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

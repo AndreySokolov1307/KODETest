@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Department: String, Codable {
+enum Department: String, Codable, CaseIterable {
     case android, ios, design, management, qa,
          backOffice = "back_office",
          frontend, hr, pr, backend, support, analytics
