@@ -8,15 +8,15 @@
 import UIKit
 
 class ListViewController: UIViewController {
-    
     private enum FetchResult {
         case success
         case failure
     }
     
-    lazy var listView = ListView()
-    lazy var networkService = NetworkService()
+    private lazy var listView = ListView()
+    private lazy var networkService = NetworkService()
     private let searchBar = CustomSearchBar()
+    private var sortType: SortType = .alphabet
     private var users = [User]() {
         didSet {
             isLoading = false
@@ -111,8 +111,6 @@ class ListViewController: UIViewController {
     
     @objc func didTapScopeButton(sender: ScopeButton) {
         listView.scopeBar.selectedButton = sender
-        print(listView.scopeBar.selectedDepartment)
-        print(filteredUsers.count)
         listView.tableView.reloadData()
     }
     
@@ -155,7 +153,7 @@ extension ListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(filteredUsers[indexPath.row].avatarUrl)
+       
     }
 }
 
@@ -164,7 +162,6 @@ extension ListViewController: UITableViewDelegate {
 
 extension ListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(filteredUsers.count)
         listView.tableView.reloadData()
     }
     
@@ -188,5 +185,29 @@ extension ListViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+    }
+    
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        let vc = SortViewController(sortType: sortType)
+        vc.delegate = self
+        let nav = UINavigationController(rootViewController: vc)
+        present(nav, animated: true)
+    }
+}
+
+//MARK: - SortViewControllerDelegate
+
+extension ListViewController: SortViewControllerDelegate {
+    func didChooseSortType(_ sortType: SortType) {
+        isLoading = true
+        self.sortType = sortType
+        switch sortType {
+        case .alphabet:
+            searchBar.setImage(Constants.images.listPlain, for: .bookmark, state: .normal)
+        case .birthday:
+            searchBar.setImage(Constants.images.listSelected, for: .bookmark, state: .normal)
+        }
+        listView.tableView.reloadData()
+        getUsers()
     }
 }

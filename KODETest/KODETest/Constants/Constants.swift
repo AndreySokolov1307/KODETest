@@ -40,6 +40,9 @@ enum Constants {
         static let tryAgainButton = "Попробовать снова"
         static let errorTitle = "Какой-то сверхразум все сломал"
         static let errorSubtitle = "Постараемся быстро починить"
+        static let sortAlphabet = "По алфавиту"
+        static let sortBirthday = "По дню рождения"
+        static let sortNavBar = "Сортировка"
     }
     
     enum numbers {
@@ -92,6 +95,12 @@ enum Constants {
         static let errorVStackCustomSpasing: CGFloat = 8
         static let errorImageWidth: CGFloat = 56
         static let errorImageHeight: CGFloat = 56
+        static let sortAlphabetButtonHeight: CGFloat = 24
+        static let sortAlphabetButtonWidth: CGFloat = 24
+        static let topHStackTop: CGFloat = 8
+        static let topHStackLeading: CGFloat = 24
+        static let topHstackTrailing: CGFloat = -24
+        static let topHstackHeight: CGFloat = 60
     }
     
     enum fonts {
@@ -105,6 +114,7 @@ enum Constants {
         static let errorTitle = UIFont.systemFont(ofSize: 17, weight: .semibold)
         static let errorSubtitle = UIFont.systemFont(ofSize: 16, weight: .regular)
         static let tryAgainButton = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        static let sortLabel = UIFont.systemFont(ofSize: 16, weight: .medium)
     }
     
     enum colors {
@@ -115,6 +125,7 @@ enum Constants {
         static let lightGrey2 = UIColor(named: "lightGrey2")
         static let lightGrey3 = UIColor(named: "lightGrey3")
         static let lightGrey4 = UIColor(named: "lightGrey4")
+        static let black2 = UIColor(named: "black2")
         static let white: UIColor = .white
         static let black: UIColor = .black
     }
@@ -129,5 +140,6 @@ enum Constants {
         static let clear = UIImage(named: "clear")
         static let stub = UIImage(named: "stub")
         static let flyingSaucer = UIImage(named: "flyingSaucer")
+        static let back = UIImage(named: "back")
     }
 }
