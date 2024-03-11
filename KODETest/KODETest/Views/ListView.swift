@@ -15,6 +15,7 @@ class ListView: UIView {
         $0.backgroundColor = Constants.colors.lightGrey
     }
     @UseAutolayout var errorView = ErrorView()
+    let refreshControl = UIRefreshControl()
    
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,6 +32,7 @@ class ListView: UIView {
         addSubview(scopeBar)
         addSubview(lineView)
         addSubview(errorView)
+        tableView.refreshControl = refreshControl
         errorView.isHidden = true
         
         tableView.contentInset = Constants.layout.tableViewContentInset

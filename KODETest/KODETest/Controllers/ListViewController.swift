@@ -16,10 +16,11 @@ class ListViewController: UIViewController {
     
     lazy var listView = ListView()
     lazy var networkService = NetworkService()
-    let searchBar = CustomSearchBar()
+    private let searchBar = CustomSearchBar()
     private var users = [User]() {
         didSet {
             isLoading = false
+            listView.refreshControl.endRefreshing()
         }
     }
     
@@ -80,6 +81,7 @@ class ListViewController: UIViewController {
         listView.tableView.dataSource = self
         listView.tableView.register(LoadingCell.self, forCellReuseIdentifier: LoadingCell.reuseIdentifier)
         listView.tableView.register(UserCell.self, forCellReuseIdentifier: UserCell.reuseIdentifier)
+        listView.refreshControl.addTarget(self, action: #selector(didPullRefreshControl(sender:)), for: .valueChanged)
     }
     
     private func setupScopeBar() {
@@ -112,6 +114,10 @@ class ListViewController: UIViewController {
         print(listView.scopeBar.selectedDepartment)
         print(filteredUsers.count)
         listView.tableView.reloadData()
+    }
+    
+    @objc func didPullRefreshControl(sender: UIRefreshControl) {
+        getUsers()
     }
 }
 
