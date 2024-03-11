@@ -16,6 +16,7 @@ enum NetworkErrors: Error {
 class NetworkService: INetworkService {
     
     var endpoint: IEndpoint = Endpoint()
+    var imageCache = ImageCache()
     
     func fetchUsers() async throws -> [User] {
         guard let url = URL(string: endpoint.url) else {
@@ -37,16 +38,20 @@ class NetworkService: INetworkService {
     }
     
     func fetchImage(from url: URL) async throws -> UIImage? {
-        let (data, response) = try await URLSession.shared.data(from: url)
-        
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            throw NetworkErrors.imageDataMissing
+        if let cachedImage = imageCache.getImage(for: url) {
+            return cachedImage
+        } else {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                throw NetworkErrors.imageDataMissing
+            }
+            
+            guard let image = UIImage(data: data) else {
+                throw NetworkErrors.imageDataMissing
+            }
+            imageCache.saveImage(image, withURL: url)
+            return image
         }
-
-        guard let image = UIImage(data: data) else {
-            throw NetworkErrors.imageDataMissing
-        }
-        
-        return image
     }
 }

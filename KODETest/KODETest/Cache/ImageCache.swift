@@ -1,0 +1,20 @@
+//
+//  ImageCache.swift
+//  KODETest
+//
+//  Created by Андрей Соколов on 11.03.2024.
+//
+
+import UIKit
+
+class ImageCache {
+    private let imageCache = NSCache<NSString, UIImage>()
+    
+    func getImage(for url: URL) -> UIImage? {
+        return imageCache.object(forKey: url.absoluteString as NSString)
+    }
+    
+    func saveImage(_ image: UIImage, withURL url: URL) {
+        imageCache.setObject(image, forKey: url.absoluteString as NSString)
+    }
+}
