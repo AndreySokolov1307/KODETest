@@ -32,6 +32,7 @@ class ListViewController: UIViewController {
             })
         }
         users = users.filter(filterUser(_:))
+        listView.tableView.backgroundView?.isHidden = users.isEmpty ? false : true
         return users
     }
     private var isLoading = true
