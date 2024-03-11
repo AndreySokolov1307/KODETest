@@ -14,6 +14,7 @@ class ListView: UIView {
     @UseAutolayout private var lineView: UIView = .style {
         $0.backgroundColor = Constants.colors.lightGrey
     }
+    @UseAutolayout var errorView = ErrorView()
    
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,6 +30,11 @@ class ListView: UIView {
         addSubview(tableView)
         addSubview(scopeBar)
         addSubview(lineView)
+        addSubview(errorView)
+        errorView.isHidden = true
+        
+        tableView.contentInset = Constants.layout.tableViewContentInset
+        tableView.separatorStyle = .none
         
         NSLayoutConstraint.activate([
             scopeBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.layout.scopeBarTop),
@@ -45,8 +51,11 @@ class ListView: UIView {
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            errorView.topAnchor.constraint(equalTo: topAnchor),
+            errorView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            errorView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
-        tableView.contentInset = Constants.layout.tableViewContentInset
-        tableView.separatorStyle = .none
     }
 }

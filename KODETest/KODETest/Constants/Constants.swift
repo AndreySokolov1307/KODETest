@@ -18,6 +18,10 @@ enum Constants {
             "Content-Type": "application/json",
             "Prefer" : "code=200, example=success"
             ]
+        static let errorHeaders: [String : String] = [
+            "Content-Type": "application/json",
+            "Prefer" : "code=500, example=error-500"
+            ]
         static let all = "Все"
         static let android = "Android"
         static let ios = "IOS"
@@ -33,6 +37,9 @@ enum Constants {
         static let analytics = "Аналитика"
         static let departmentCellReuseIdentifier = "DepartmentCell"
         static let searchBarPlaceholder = "Введите имя, тег, почту..."
+        static let tryAgainButton = "Попробовать снова"
+        static let errorTitle = "Какой-то сверхразум все сломал"
+        static let errorSubtitle = "Постараемся быстро починить"
     }
     
     enum numbers {
@@ -81,6 +88,10 @@ enum Constants {
         static let avatarImageWidth: CGFloat = 72
         static let vStackLeading: CGFloat = 16
         static let birthDateLabelTrailing: CGFloat = -16
+        static let errorVStackSpacing: CGFloat = 12
+        static let errorVStackCustomSpasing: CGFloat = 8
+        static let errorImageWidth: CGFloat = 56
+        static let errorImageHeight: CGFloat = 56
     }
     
     enum fonts {
@@ -91,6 +102,9 @@ enum Constants {
         static let subtitleLabel = UIFont.systemFont(ofSize: 13, weight: .regular)
         static let userTagLabel = UIFont.systemFont(ofSize: 14, weight: .medium)
         static let bithDateLabel = UIFont.systemFont(ofSize: 15, weight: .regular)
+        static let errorTitle = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        static let errorSubtitle = UIFont.systemFont(ofSize: 16, weight: .regular)
+        static let tryAgainButton = UIFont.systemFont(ofSize: 16, weight: .semibold)
     }
     
     enum colors {
@@ -114,5 +128,6 @@ enum Constants {
         static let sortPlain = UIImage(named: "sortPlain")
         static let clear = UIImage(named: "clear")
         static let stub = UIImage(named: "stub")
+        static let flyingSaucer = UIImage(named: "flyingSaucer")
     }
 }

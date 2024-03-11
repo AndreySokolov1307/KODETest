@@ -8,20 +8,15 @@
 import Foundation
 
 class Endpoint: IEndpoint {
-    var httpMethod: HTTPMethod {
-        return .get
-    }
+    var httpMethod: HTTPMethod  = .get
     
-    var baseURLString: String {
-        return Constants.strings.baseURLString
-    }
+    var baseURLString: String = Constants.strings.baseURLString
     
-    var path: String {
-        return Constants.strings.path
-    }
+    var path: String = Constants.strings.path
     
-    var headers: [String : String] {
-        return Constants.strings.headers
-    }
+    //Выбери ответ с сервера
+    var headers: [String : String] = Constants.strings.headers
+    // var headers: [String : String] = Constants.strings.errorHeaders
 }
+
 

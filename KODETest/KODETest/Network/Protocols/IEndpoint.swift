@@ -12,10 +12,10 @@ enum HTTPMethod: String {
 }
 
 protocol IEndpoint {
-    var httpMethod: HTTPMethod { get }
-    var baseURLString: String { get }
-    var path: String { get }
-    var headers: [ String : String ]  { get }
+    var httpMethod: HTTPMethod { get set }
+    var baseURLString: String { get set }
+    var path: String { get set }
+    var headers: [ String : String ]  { get set }
 }
 
 extension IEndpoint {

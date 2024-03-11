@@ -9,6 +9,11 @@ import UIKit
 
 class ListViewController: UIViewController {
     
+    private enum FetchResult {
+        case success
+        case failure
+    }
+    
     lazy var listView = ListView()
     lazy var networkService = NetworkService()
     private var users = [User]() {
@@ -28,6 +33,8 @@ class ListViewController: UIViewController {
         setupSearchBar()
         setupScopeBar()
         setupTableView()
+        setupErrorView()
+        
         getUsers()
     }
     
@@ -35,11 +42,18 @@ class ListViewController: UIViewController {
         searchTask = Task {
             do {
                 users = try await networkService.fetchUsers()
+                updateUI(with: .success)
                 listView.tableView.reloadData()
             } catch {
-                print(error)
+                updateUI(with: .failure)
             }
         }
+    }
+    private func updateUI(with result: FetchResult) {
+        navigationItem.titleView?.isHidden = result == .success ? false : true
+        listView.errorView.isHidden =  result == .success ? true : false
+     //   listView.tableView.isHidden = result == .success ? false : true
+     //   listView.scopeBar.isHidden = result == .success ? false : true
     }
     
     private func setupTableView() {
@@ -62,6 +76,17 @@ class ListViewController: UIViewController {
         let searchBar = CustomSearchBar()
         searchBar.delegate = self
         navigationItem.titleView = searchBar
+    }
+    
+    private func setupErrorView() {
+        listView.errorView.tryAgainButton.addTarget(self, action: #selector(didTapTryAgainButton), for: .touchUpInside)
+    }
+    
+    @objc func didTapTryAgainButton() {
+        listView.errorView.isHidden = true
+        navigationItem.titleView?.isHidden = false
+        networkService.endpoint.headers = Constants.strings.headers
+        getUsers()
     }
     
     @objc func didTapScopeButton(sender: ScopeButton) {
