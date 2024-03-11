@@ -16,10 +16,22 @@ class ListViewController: UIViewController {
     
     lazy var listView = ListView()
     lazy var networkService = NetworkService()
+    let searchBar = CustomSearchBar()
     private var users = [User]() {
         didSet {
             isLoading = false
         }
+    }
+    
+    private var filteredUsers: [User] {
+        var users = users.sorted { $0.fullName < $1.fullName }
+        if listView.scopeBar.selectedDepartment != Department.all.title {
+            users = users.filter({ user in
+                user.department.title == listView.scopeBar.selectedDepartment
+            })
+        }
+        users = users.filter(filterUser(_:))
+        return users
     }
     private var isLoading = true
     var searchTask: Task<Void, Never>? = nil
@@ -38,6 +50,15 @@ class ListViewController: UIViewController {
         getUsers()
     }
     
+    private func filterUser(_ user: User) -> Bool {
+        if let text = searchBar.text,
+           !text.isEmpty {
+           return user.fullName.localizedCaseInsensitiveContains(text) || user.userTag.localizedCaseInsensitiveContains(text) || user.userTag.localizedCaseInsensitiveContains(text)
+        } else {
+            return true
+        }
+    }
+    
     private func getUsers() {
         searchTask = Task {
             do {
@@ -52,8 +73,6 @@ class ListViewController: UIViewController {
     private func updateUI(with result: FetchResult) {
         navigationItem.titleView?.isHidden = result == .success ? false : true
         listView.errorView.isHidden =  result == .success ? true : false
-     //   listView.tableView.isHidden = result == .success ? false : true
-     //   listView.scopeBar.isHidden = result == .success ? false : true
     }
     
     private func setupTableView() {
@@ -73,7 +92,6 @@ class ListViewController: UIViewController {
     }
     
     private func setupSearchBar() {
-        let searchBar = CustomSearchBar()
         searchBar.delegate = self
         navigationItem.titleView = searchBar
     }
@@ -91,7 +109,9 @@ class ListViewController: UIViewController {
     
     @objc func didTapScopeButton(sender: ScopeButton) {
         listView.scopeBar.selectedButton = sender
-        print(sender.titleLabel!.text)
+        print(listView.scopeBar.selectedDepartment)
+        print(filteredUsers.count)
+        listView.tableView.reloadData()
     }
 }
 
@@ -102,7 +122,7 @@ extension ListViewController: UITableViewDataSource {
         if isLoading {
             return Constants.numbers.loadingTableViewRows
         } else {
-            return users.count
+            return filteredUsers.count
         }
     }
     
@@ -112,7 +132,7 @@ extension ListViewController: UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: UserCell.reuseIdentifier) as! UserCell
-            let user = users[indexPath.row]
+            let user = filteredUsers[indexPath.row]
             Task {
                 await cell.configure(for: user, with: networkService)
             }
@@ -127,12 +147,26 @@ extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return Constants.layout.heightForRow
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(filteredUsers[indexPath.row].avatarUrl)
+    }
 }
 
 
 //MARK: - UISearchBarDelegate
 
 extension ListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(filteredUsers.count)
+        listView.tableView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+        searchBar.setImage(Constants.images.searchSelected, for: .search, state: .normal)
+    }
+    
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(false, animated: true)
         if let text = searchBar.text,
@@ -140,12 +174,7 @@ extension ListViewController: UISearchBarDelegate {
             searchBar.setImage(Constants.images.searchPlain, for: .search, state: .normal)
         }
     }
-
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchBar.setShowsCancelButton(true, animated: true)
-        searchBar.setImage(Constants.images.searchSelected, for: .search, state: .normal)
-    }
-
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = Constants.strings.emptyString
         searchBar.resignFirstResponder()

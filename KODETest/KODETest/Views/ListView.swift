@@ -35,6 +35,7 @@ class ListView: UIView {
         
         tableView.contentInset = Constants.layout.tableViewContentInset
         tableView.separatorStyle = .none
+        tableView.keyboardDismissMode = .onDrag
         
         NSLayoutConstraint.activate([
             scopeBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.layout.scopeBarTop),

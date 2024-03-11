@@ -20,6 +20,10 @@ class ScopeBar: UIScrollView {
         }
     }
     
+    var selectedDepartment: String {
+        (selectedButton?.titleLabel?.text)! 
+    }
+    
     @UseAutolayout var hStack: UIStackView = .style {
         $0.axis = .horizontal
         $0.alignment = .fill
