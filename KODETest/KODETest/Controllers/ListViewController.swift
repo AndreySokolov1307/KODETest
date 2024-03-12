@@ -189,9 +189,19 @@ extension ListViewController: UISearchBarDelegate {
     }
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        showSortVCAsSheet()
+    }
+    
+    private func showSortVCAsSheet() {
         let vc = SortViewController(sortType: sortType)
         vc.delegate = self
         let nav = UINavigationController(rootViewController: vc)
+        
+        if let sheet = nav.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = Constants.layout.sheetCornerRadius
+        }
         present(nav, animated: true)
     }
 }

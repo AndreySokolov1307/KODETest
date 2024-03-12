@@ -61,5 +61,6 @@ extension Constants {
         static let topHstackTrailing: CGFloat = -24
         static let topHstackHeight: CGFloat = 60
         static let vStackEmptySearchTop: CGFloat = 80
+        static let sheetCornerRadius: CGFloat = 16
     }
 }

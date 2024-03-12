@@ -35,12 +35,23 @@ final class SortViewController: UIViewController {
         super.viewDidLoad()
         setupNavBar()
         setupButtons()
+        setupSheetPresentationController()
     }
     
     private func setupNavBar() {
         navigationItem.title =  Constants.strings.sortNavBar
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: Constants.images.back , style: .plain, target: self, action: #selector(didTapBackButton))
         navigationItem.leftBarButtonItem?.tintColor = Constants.colors.black2
+        if #available(iOS 16.0, *) {
+            navigationItem.leftBarButtonItem?.isHidden = true
+        } else {
+            // Fallback on earlier versions
+        }
+        sheetPresentationController?.delegate = self
+    }
+    
+    private func setupSheetPresentationController() {
+        sheetPresentationController?.delegate = self
     }
     
     private func setupButtons() {
@@ -68,5 +79,16 @@ final class SortViewController: UIViewController {
     
     @objc func didTapBackButton() {
         dismiss(animated: true)
+    }
+}
+
+extension SortViewController: UISheetPresentationControllerDelegate {
+    func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController) {
+        if #available(iOS 16.0, *) {
+            navigationItem.leftBarButtonItem?.isHidden = sheetPresentationController.selectedDetentIdentifier == .medium ? true : false
+        } else {
+            // Fallback on earlier versions
+        }
+        sheetPresentationController.prefersGrabberVisible = sheetPresentationController.selectedDetentIdentifier == .medium ? true : false
     }
 }
