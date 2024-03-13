@@ -20,5 +20,6 @@ extension Constants {
         static let errorSubtitle = UIFont.systemFont(ofSize: 16, weight: .regular)
         static let tryAgainButton = UIFont.systemFont(ofSize: 16, weight: .semibold)
         static let sortLabel = UIFont.systemFont(ofSize: 16, weight: .medium)
+        static let headerTitle = UIFont.systemFont(ofSize: 15, weight: .medium)
     }
 }

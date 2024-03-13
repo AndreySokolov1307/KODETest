@@ -65,5 +65,12 @@ extension Constants {
         static let userCellImageCornerRadius: CGFloat = 36
         static let userCellVStackSpacing: CGFloat = 3
         static let userCellHStackSpacing: CGFloat = 4
+        static let sectionHeaderTopPadding: CGFloat = 0
+        static let nextYearSectionHeaderHeight: CGFloat = 68
+        static let sectionHeaderHeight: CGFloat = 0
+        static let leftLineLeading: CGFloat = 24
+        static let rightLineTrailing: CGFloat = -24
+        static let headerLineHeight: CGFloat = 1
+        static let headerLineWidth: CGFloat = 72
     }
 }

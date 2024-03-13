@@ -35,11 +35,11 @@ class ListView: UIView {
         tableView.refreshControl = refreshControl
         errorView.isHidden = true
         
-        tableView.contentInset = Constants.layout.tableViewContentInset
         tableView.separatorStyle = .none
         tableView.keyboardDismissMode = .onDrag
         tableView.backgroundView = EmptySearchView()
-        
+        tableView.sectionHeaderTopPadding = Constants.layout.sectionHeaderTopPadding
+
         NSLayoutConstraint.activate([
             scopeBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.layout.scopeBarTop),
             scopeBar.leadingAnchor.constraint(equalTo: leadingAnchor),

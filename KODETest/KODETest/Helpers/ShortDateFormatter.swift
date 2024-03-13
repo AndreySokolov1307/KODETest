@@ -21,4 +21,8 @@ class ShortDateFomatter: DateFormatter {
         dateFormat = Constants.strings.shortDateFormat
         timeZone = .current
     }
+    
+    func yearDateFormat() {
+        dateFormat = "yyyy"
+    }
 }

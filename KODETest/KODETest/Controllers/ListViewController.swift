@@ -250,6 +250,26 @@ extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath)
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard !usersFilteredSortedNextYear.isEmpty else { return nil }
+        if sections[section] == .nextYear {
+            let header = HeaderView()
+            header.titleLabel.text = Constants.functions.getNextYearString()
+            return header
+        } else {
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard !usersFilteredSortedNextYear.isEmpty else { return Constants.layout.sectionHeaderHeight }
+        if sections[section] == .nextYear {
+            return Constants.layout.nextYearSectionHeaderHeight
+        } else {
+            return Constants.layout.sectionHeaderHeight
+        }
+    }
 }
 
 //MARK: - UISearchBarDelegate
