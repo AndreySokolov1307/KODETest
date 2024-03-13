@@ -62,5 +62,8 @@ extension Constants {
         static let topHstackHeight: CGFloat = 60
         static let vStackEmptySearchTop: CGFloat = 80
         static let sheetCornerRadius: CGFloat = 16
+        static let userCellImageCornerRadius: CGFloat = 36
+        static let userCellVStackSpacing: CGFloat = 3
+        static let userCellHStackSpacing: CGFloat = 4
     }
 }

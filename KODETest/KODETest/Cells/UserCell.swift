@@ -8,10 +8,10 @@
 import UIKit
 
 class UserCell: UITableViewCell {
-    static var reuseIdentifier = "UserCell"
+    static var reuseIdentifier = Constants.strings.userCellReuseIdentifier
     
     @UseAutolayout var avatarImageView: UIImageView = .style {
-        $0.layer.cornerRadius = 36
+        $0.layer.cornerRadius = Constants.layout.userCellImageCornerRadius
         $0.layer.masksToBounds = true
     }
     
@@ -24,7 +24,7 @@ class UserCell: UITableViewCell {
         $0.axis = .vertical
         $0.alignment = .leading
         $0.distribution = .fill
-        $0.spacing = 3
+        $0.spacing = Constants.layout.userCellVStackSpacing
     }
     
     var nameLabel: UILabel = .style {
@@ -45,7 +45,7 @@ class UserCell: UITableViewCell {
         $0.axis = .horizontal
         $0.distribution = .fillProportionally
         $0.alignment = .fill
-        $0.spacing = 4
+        $0.spacing = Constants.layout.userCellHStackSpacing
     }
     
     
@@ -66,6 +66,7 @@ class UserCell: UITableViewCell {
         vStack.addArrangedSubview(positionLabel)
         hStack.addArrangedSubview(nameLabel)
         hStack.addArrangedSubview(userTagLabel)
+        birthDateLabel.isHidden = true
         
         NSLayoutConstraint.activate([
             avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: Constants.layout.avatarImageTop),
@@ -73,13 +74,13 @@ class UserCell: UITableViewCell {
             avatarImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Constants.layout.avatarImageBottom),
             avatarImageView.heightAnchor.constraint(equalToConstant: Constants.layout.avatarImageHeight),
             avatarImageView.widthAnchor.constraint(equalToConstant: Constants.layout.avatarImageWidth),
-           
+            
             vStack.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor,constant: Constants.layout.vStackLeading),
-           vStack.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor),
-           vStack.trailingAnchor.constraint(equalTo: birthDateLabel.leadingAnchor),
-           
+            vStack.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor),
+            vStack.trailingAnchor.constraint(equalTo: birthDateLabel.leadingAnchor),
+            
             birthDateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.layout.birthDateLabelTrailing),
-           birthDateLabel.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor),
+            birthDateLabel.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor),
         ])
     }
 }

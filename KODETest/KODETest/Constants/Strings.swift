@@ -35,7 +35,6 @@ extension Constants {
         static let backend = "Backend"
         static let support = "Техподдержка"
         static let analytics = "Аналитика"
-        static let departmentCellReuseIdentifier = "DepartmentCell"
         static let searchBarPlaceholder = "Введите имя, тег, почту..."
         static let tryAgainButton = "Попробовать снова"
         static let errorTitle = "Какой-то сверхразум все сломал"
@@ -45,5 +44,10 @@ extension Constants {
         static let sortNavBar = "Сортировка"
         static let emptySearchTitle = "Мы никого не нашли"
         static let emptySearchSubtitle = "Попробуй скорректировать запрос"
+        static let shortDateFormat = "MMM d"
+        static let regularDateFromat = "yyyy-MM-dd"
+        static let loadingCellReuseIdentifier = "LoadingCell"
+        static let userCellReuseIdentifier = "UserCell"
+        
     }
 }

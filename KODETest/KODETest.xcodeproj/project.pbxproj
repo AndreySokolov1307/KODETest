@@ -23,6 +23,8 @@
 		323765C12B9E1BCE00315C48 /* UserDisplaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323765C02B9E1BCE00315C48 /* UserDisplaying.swift */; };
 		323FB2502B9F14D3005D6292 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323FB24F2B9F14D3005D6292 /* ErrorView.swift */; };
 		323FB2522B9F2D54005D6292 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323FB2512B9F2D54005D6292 /* ImageCache.swift */; };
+		326665BA2BA09A130084DB7E /* ShortDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326665B92BA09A130084DB7E /* ShortDateFormatter.swift */; };
+		3268F3C22BA1C7A500D1E1EF /* Date+MonthDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3268F3C12BA1C7A500D1E1EF /* Date+MonthDay.swift */; };
 		32C0900D2B9C8536000274EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0900C2B9C8536000274EB /* AppDelegate.swift */; };
 		32C0900F2B9C8536000274EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0900E2B9C8536000274EB /* SceneDelegate.swift */; };
 		32C090112B9C8536000274EB /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C090102B9C8536000274EB /* ListViewController.swift */; };
@@ -60,6 +62,8 @@
 		323765C02B9E1BCE00315C48 /* UserDisplaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDisplaying.swift; sourceTree = "<group>"; };
 		323FB24F2B9F14D3005D6292 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		323FB2512B9F2D54005D6292 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		326665B92BA09A130084DB7E /* ShortDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortDateFormatter.swift; sourceTree = "<group>"; };
+		3268F3C12BA1C7A500D1E1EF /* Date+MonthDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+MonthDay.swift"; sourceTree = "<group>"; };
 		32C090092B9C8536000274EB /* KODETest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KODETest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C0900C2B9C8536000274EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32C0900E2B9C8536000274EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +123,14 @@
 			path = Cache;
 			sourceTree = "<group>";
 		};
+		326665B82BA099E00084DB7E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				326665B92BA09A130084DB7E /* ShortDateFormatter.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		32C090002B9C8536000274EB = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +150,7 @@
 		32C0900B2B9C8536000274EB /* KODETest */ = {
 			isa = PBXGroup;
 			children = (
+				326665B82BA099E00084DB7E /* Helpers */,
 				32C090202B9C8669000274EB /* Application */,
 				32C090242B9C86A8000274EB /* Models */,
 				32C090232B9C86A2000274EB /* Views */,
@@ -228,6 +241,7 @@
 			children = (
 				32C090402B9CD0AE000274EB /* UIVIew+Style.swift */,
 				32C090422B9CD0E9000274EB /* Autolayout+PropertyWrapper.swift */,
+				3268F3C12BA1C7A500D1E1EF /* Date+MonthDay.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -332,6 +346,7 @@
 				323078D02B9F83EC0085DDCE /* Numbers.swift in Sources */,
 				32C0902F2B9CAE23000274EB /* User.swift in Sources */,
 				323078CE2B9F83D90085DDCE /* Colors.swift in Sources */,
+				326665BA2BA09A130084DB7E /* ShortDateFormatter.swift in Sources */,
 				32C090112B9C8536000274EB /* ListViewController.swift in Sources */,
 				323078BC2B9F5C940085DDCE /* SortView.swift in Sources */,
 				32C0900D2B9C8536000274EB /* AppDelegate.swift in Sources */,
@@ -341,6 +356,7 @@
 				323078C62B9F83B00085DDCE /* Strings.swift in Sources */,
 				32C090412B9CD0AE000274EB /* UIVIew+Style.swift in Sources */,
 				32C090492B9CE16B000274EB /* ScopeBar.swift in Sources */,
+				3268F3C22BA1C7A500D1E1EF /* Date+MonthDay.swift in Sources */,
 				323078C42B9F7DED0085DDCE /* EmptySearchView.swift in Sources */,
 				32C0900F2B9C8536000274EB /* SceneDelegate.swift in Sources */,
 				323078CC2B9F83CE0085DDCE /* Fonts.swift in Sources */,

@@ -8,6 +8,17 @@
 import UIKit
 
 class ListViewController: UIViewController {
+    private enum Section {
+        case all, thisYear, nextYear
+        
+        static func getSections(_ sortType: SortType) -> [Section] {
+            if sortType == .alphabet {
+                return [.all]
+            } else {
+                return [.thisYear, .nextYear]
+            }
+        }
+    }
     private enum FetchResult {
         case success
         case failure
@@ -17,27 +28,26 @@ class ListViewController: UIViewController {
     private lazy var networkService = NetworkService()
     private let searchBar = CustomSearchBar()
     private var sortType: SortType = .alphabet
+    private var isLoading = true
+    private var searchTask: Task<Void, Never>? = nil
+    private var sections: [Section] {
+        Section.getSections(sortType)
+    }
     private var users = [User]() {
         didSet {
             isLoading = false
             listView.refreshControl.endRefreshing()
         }
     }
+
+    private var usersThisYear = [User]()
+    private var usersNextYear = [User]()
     
-    private var filteredUsers: [User] {
-        var users = users.sorted { $0.fullName < $1.fullName }
-        if listView.scopeBar.selectedDepartment != Department.all.title {
-            users = users.filter({ user in
-                user.department.title == listView.scopeBar.selectedDepartment
-            })
-        }
-        users = users.filter(filterUser(_:))
-        listView.tableView.backgroundView?.isHidden = users.isEmpty ? false : true
-        return users
-    }
-    private var isLoading = true
-    var searchTask: Task<Void, Never>? = nil
-    
+    private var usersFilteredSortedThisYear = [User]()
+    private var usersFilteredSortedNextYear = [User]()
+    private var sortedUsers = [User]()
+    private var filteredSortedUsers = [User]()
+ 
     override func loadView() {
         view = listView
     }
@@ -52,27 +62,20 @@ class ListViewController: UIViewController {
         getUsers()
     }
     
-    private func filterUser(_ user: User) -> Bool {
-        if let text = searchBar.text,
-           !text.isEmpty {
-           return user.fullName.localizedCaseInsensitiveContains(text) || user.userTag.localizedCaseInsensitiveContains(text) || user.userTag.localizedCaseInsensitiveContains(text)
-        } else {
-            return true
-        }
-    }
-    
     private func getUsers() {
         searchTask = Task {
             do {
                 users = try await networkService.fetchUsers()
+                getUsersSorted()
                 updateUI(with: .success)
-                listView.tableView.reloadData()
+                updateSearchResult(with: searchBar.text, department: listView.scopeBar.selectedDepartment)
             } catch {
                 updateUI(with: .failure)
             }
         }
     }
     private func updateUI(with result: FetchResult) {
+        listView.tableView.backgroundView?.isHidden = true
         navigationItem.titleView?.isHidden = result == .success ? false : true
         listView.errorView.isHidden =  result == .success ? true : false
     }
@@ -103,6 +106,69 @@ class ListViewController: UIViewController {
         listView.errorView.tryAgainButton.addTarget(self, action: #selector(didTapTryAgainButton), for: .touchUpInside)
     }
     
+    private func getUsersSorted() {
+        if sortType == .alphabet {
+            sortedUsers = []
+            sortedUsers = users.sorted { $0.fullName < $1.fullName }
+            filteredSortedUsers = sortedUsers
+        } else {
+            usersNextYear = []
+            usersThisYear = []
+            let sortedByDayUsers = users.sorted {  $0.birthdayDateForSort! < $1.birthdayDateForSort! }
+            for user in sortedByDayUsers {
+                if Date.MonthDay(date: user.birthdayDateForSort!) > Date.MonthDay(date: Date()) {
+                    usersThisYear.append(user)
+                } else {
+                    usersNextYear.append(user)
+                }
+            }
+            usersFilteredSortedThisYear = usersThisYear
+            usersFilteredSortedNextYear = usersNextYear
+        }
+    }
+    
+    private func filterUser(_ user: User, searchTerm: String) -> Bool {
+        if !searchTerm.isEmpty {
+            return user.fullName.localizedCaseInsensitiveContains(searchTerm) || user.userTag.localizedCaseInsensitiveContains(searchTerm)
+        } else {
+            return true
+        }
+    }
+    
+    private func updateSearchResult(with searchTerm: String?, department: String) {
+        guard let searchTerm = searchTerm else { return }
+            if sortType == .alphabet {
+                if department != Department.all.title {
+                    filteredSortedUsers = sortedUsers.filter({ user in
+                       return filterUser(user, searchTerm: searchTerm) && user.department.title == department
+                    })
+                } else {
+                    filteredSortedUsers = sortedUsers.filter({ user in
+                        return filterUser(user, searchTerm: searchTerm)
+                    })
+                }
+                listView.tableView.backgroundView?.isHidden = filteredSortedUsers.isEmpty ? false : true
+            } else {
+                if department != Department.all.title {
+                    usersFilteredSortedThisYear =  usersThisYear.filter { user in
+                        return filterUser(user, searchTerm: searchTerm) && user.department.title == department
+                    }
+                    usersFilteredSortedNextYear =  usersNextYear.filter { user in
+                        return filterUser(user, searchTerm: searchTerm) && user.department.title == department
+                    }
+                } else {
+                    usersFilteredSortedThisYear =  usersThisYear.filter { user in
+                        return filterUser(user, searchTerm: searchTerm)
+                    }
+                    usersFilteredSortedNextYear =  usersNextYear.filter { user in
+                        return filterUser(user, searchTerm: searchTerm)
+                    }
+                }
+                listView.tableView.backgroundView?.isHidden = usersFilteredSortedThisYear.isEmpty && usersFilteredSortedNextYear.isEmpty ? false : true
+            }
+        listView.tableView.reloadData()
+    }
+    
     @objc func didTapTryAgainButton() {
         listView.errorView.isHidden = true
         navigationItem.titleView?.isHidden = false
@@ -112,7 +178,10 @@ class ListViewController: UIViewController {
     
     @objc func didTapScopeButton(sender: ScopeButton) {
         listView.scopeBar.selectedButton = sender
-        listView.tableView.reloadData()
+        if let text = searchBar.text {
+            print(text, listView.scopeBar.selectedDepartment)
+            updateSearchResult(with: text, department: listView.scopeBar.selectedDepartment)
+        }
     }
     
     @objc func didPullRefreshControl(sender: UIRefreshControl) {
@@ -123,12 +192,27 @@ class ListViewController: UIViewController {
 //MARK: - UITableViewDataSource
 
 extension ListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isLoading {
-            return Constants.numbers.loadingTableViewRows
-        } else {
-            return filteredUsers.count
+    func numberOfSections(in tableView: UITableView) -> Int {
+        sections.count
+    }
+    
+    private func numberOfRows(for section: Section, isLoading: Bool) -> Int {
+        switch section {
+        case .all:
+            if isLoading {
+                return Constants.numbers.loadingTableViewRows
+            } else {
+                return filteredSortedUsers.count
+            }
+        case .thisYear:
+            return usersFilteredSortedThisYear.count
+        case .nextYear:
+            return usersFilteredSortedNextYear.count
         }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        numberOfRows(for: sections[section], isLoading: isLoading)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -137,10 +221,19 @@ extension ListViewController: UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: UserCell.reuseIdentifier) as! UserCell
-            let user = filteredUsers[indexPath.row]
+            let user: User
+            switch sections[indexPath.section] {
+            case .all:
+                 user = filteredSortedUsers[indexPath.row]
+            case .thisYear:
+                 user = usersFilteredSortedThisYear[indexPath.row]
+            case .nextYear:
+                 user = usersFilteredSortedNextYear[indexPath.row]
+            }
             Task {
                 await cell.configure(for: user, with: networkService)
             }
+            cell.birthDateLabel.isHidden = sortType == .alphabet ? true : false
             return cell
         }
     }
@@ -153,17 +246,17 @@ extension ListViewController: UITableViewDelegate {
         return Constants.layout.heightForRow
     }
     
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
+        print(indexPath)
     }
 }
-
 
 //MARK: - UISearchBarDelegate
 
 extension ListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        listView.tableView.reloadData()
+        updateSearchResult(with: searchText, department: listView.scopeBar.selectedDepartment)
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {

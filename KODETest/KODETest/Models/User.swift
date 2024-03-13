@@ -25,4 +25,18 @@ struct User: Codable {
     var fullName: String {
         firstName + Constants.strings.space + lastName
     }
+    
+    var birthdayDate: Date? {
+        let dateFoormatter = DateFormatter()
+        dateFoormatter.dateFormat = Constants.strings.regularDateFromat
+        dateFoormatter.timeZone = .current
+        return dateFoormatter.date(from: birthday)
+    }
+    
+    var birthdayDateForSort: Date? {
+      guard let date = birthdayDate else { return nil }
+      let string = ShortDateFomatter().string(from: date)
+      return   ShortDateFomatter().date(from: string)
+    }
 }
+

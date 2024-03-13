@@ -8,7 +8,7 @@
 import UIKit
 
 class LoadingCell: UITableViewCell {
-    static var reuseIdentifier = "LoadingCell"
+    static var reuseIdentifier = Constants.strings.loadingCellReuseIdentifier
     
     @UseAutolayout var avatarView: UIView = .style {
         $0.layer.cornerRadius = Constants.layout.avatarViewCornerRadius
