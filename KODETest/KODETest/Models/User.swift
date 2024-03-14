@@ -26,17 +26,26 @@ struct User: Codable {
         firstName + Constants.strings.space + lastName
     }
     
+    func getAgeFromatted() -> String {
+        let now = Date()
+        let dcf = DateComponentsFormatter()
+        dcf.allowedUnits = .year
+        dcf.unitsStyle = .full
+//        let calendar = Calendar.current
+//        let ageComponents = calendar.dateComponents([.year], from: birthdayDate!, to: now)
+//        let age = ageComponents.year!
+        let age = dcf.string(from: birthdayDate!, to: Date())
+        return age!
+    }
+    
     var birthdayDate: Date? {
-        let dateFoormatter = DateFormatter()
-        dateFoormatter.dateFormat = Constants.strings.regularDateFromat
-        dateFoormatter.timeZone = .current
-        return dateFoormatter.date(from: birthday)
+        return DateFormatterService.shared.regularFormatter.date(from: birthday)
     }
     
     var birthdayDateForSort: Date? {
-      guard let date = birthdayDate else { return nil }
-      let string = ShortDateFomatter().string(from: date)
-      return   ShortDateFomatter().date(from: string)
+        guard let date = birthdayDate else { return nil }
+        let string = DateFormatterService.shared.shortFormater.string(from: date)
+        return   DateFormatterService.shared.shortFormater.date(from: string)
     }
 }
 

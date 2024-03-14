@@ -45,7 +45,7 @@ extension Constants {
         static let emptySearchTitle = "Мы никого не нашли"
         static let emptySearchSubtitle = "Попробуй скорректировать запрос"
         static let shortDateFormat = "MMM d"
-        static let regularDateFromat = "yyyy-MM-dd"
+        static let regularDateFormat = "yyyy-MM-dd"
         static let loadingCellReuseIdentifier = "LoadingCell"
         static let userCellReuseIdentifier = "UserCell"
         

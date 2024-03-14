@@ -8,6 +8,8 @@
 import UIKit
 
 class ImageCache {
+    static let shared = ImageCache()
+    
     private let imageCache = NSCache<NSString, UIImage>()
     
     func getImage(for url: URL) -> UIImage? {
