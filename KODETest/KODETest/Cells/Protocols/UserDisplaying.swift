@@ -23,7 +23,7 @@ extension UserDisplaying {
         userTagLabel.text = user.userTag.lowercased()
         avatarImageView.image = Constants.images.stub
         if let date = user.birthdayDate {
-            birthDateLabel.text = ShortDateFomatter().string(from: date)
+            birthDateLabel.text = DateFormatterService().shortFormater.string(from: date)
         }
         guard let url = URL(string: user.avatarUrl) else { return }
         

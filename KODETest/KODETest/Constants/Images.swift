@@ -20,5 +20,7 @@ extension Constants {
         static let flyingSaucer = UIImage(named: "flyingSaucer")
         static let back = UIImage(named: "back")
         static let magnifier = UIImage(named: "magnifier")
+        static let phone = UIImage(named: "phone")
+        static let favorite = UIImage(named: "favorite")
     }
 }

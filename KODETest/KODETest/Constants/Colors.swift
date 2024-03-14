@@ -17,6 +17,8 @@ extension Constants {
         static let lightGrey3 = UIColor(named: "lightGrey3")
         static let lightGrey4 = UIColor(named: "lightGrey4")
         static let black2 = UIColor(named: "black2")
+        static let background = UIColor(named: "background")
+        static let shadow = UIColor(named: "shadow")
         static let white: UIColor = .white
         static let black: UIColor = .black
     }

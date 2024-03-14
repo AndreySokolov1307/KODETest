@@ -246,9 +246,17 @@ extension ListViewController: UITableViewDelegate {
         return Constants.layout.heightForRow
     }
     
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
+        var user: User
+        switch sections[indexPath.section] {
+        case .all:
+            user = filteredSortedUsers[indexPath.row]
+        case .thisYear:
+            user = usersFilteredSortedThisYear[indexPath.row]
+        case .nextYear:
+            user = usersFilteredSortedNextYear[indexPath.row]
+        }
+        navigationController?.pushViewController(DetailUserViewController(user: user, networkService: networkService), animated: true)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
