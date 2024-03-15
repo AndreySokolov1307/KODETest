@@ -54,8 +54,12 @@ extension Constants {
         static let errorVStackCustomSpasing: CGFloat = 8
         static let errorImageWidth: CGFloat = 56
         static let errorImageHeight: CGFloat = 56
-        static let sortAlphabetButtonHeight: CGFloat = 24
-        static let sortAlphabetButtonWidth: CGFloat = 24
+        static let optionImageHeight: CGFloat = 24
+        static let optionImageWidth: CGFloat = 24
+        static let optionViewLeading: CGFloat = 24
+        static let optionViewTop: CGFloat = 8
+        static let optionLabelLeading: CGFloat = 12
+        static let optionViewHeight: CGFloat = 60
         static let topHStackTop: CGFloat = 8
         static let topHStackLeading: CGFloat = 24
         static let topHstackTrailing: CGFloat = -24
@@ -72,5 +76,28 @@ extension Constants {
         static let rightLineTrailing: CGFloat = -24
         static let headerLineHeight: CGFloat = 1
         static let headerLineWidth: CGFloat = 72
+        static let detailBackButtonLeading: CGFloat = 16
+        static let detailBackButtonTop: CGFloat = 10
+        static let detailBackButtonSide: CGFloat = 24
+        static let birthInfoViewLeading: CGFloat = 16
+        static let birthInfoTop: CGFloat = 8
+        static let birthInfoTrailing: CGFloat = -16
+        static let birthInfoHeight: CGFloat = 60
+        static let phoneInfoTop: CGFloat = 6
+        static let avatarImageCornerRadius: CGFloat = 52
+        static let containerViewShadowOffset = CGSize(width: 0, height: 8)
+        static let containerViewShadowRadius: CGFloat = 8
+        static let containerViewShadowOpacity: Float = 0.16
+        static let userInfoVStackSpacing: CGFloat = 12
+        static let userInfoHStackSpacing: CGFloat = 4
+        static let containerViewTop: CGFloat = 24
+        static let containerViewSide: CGFloat = 104
+        static let positionLabelBottom: CGFloat = -24
+        static let userInfoVStackBottom: CGFloat = -12
+        static let userInfoVStackTop: CGFloat = 24
+        static let userInfoMinHeight: CGFloat = 250
+        static let infoViewImageSide: CGFloat = 24
+        static let infoViewLabelLeading: CGFloat = 12
+        static let infoViewExtraLabelTrailing: CGFloat = -4
     }
 }

@@ -48,6 +48,10 @@ extension Constants {
         static let regularDateFormat = "yyyy-MM-dd"
         static let loadingCellReuseIdentifier = "LoadingCell"
         static let userCellReuseIdentifier = "UserCell"
-        
+        static let cancelActionTitle = "Отмена"
+        static let yearFormat = "yyyy"
+        static let dayMonthYearFormat = "dd MMMM yyyy"
+        static let cancelButtonTextValue = "Отмена"
+        static let cancelButtonTextKey = "cancelButtonText"
     }
 }

@@ -24,7 +24,7 @@ class CustomSearchBar: UISearchBar {
         searchTextField.layer.cornerRadius = Constants.layout.seatchTextFieldCornerRadius
         searchTextField.layer.masksToBounds = true
         searchTextField.attributedPlaceholder = NSAttributedString(string: Constants.strings.searchBarPlaceholder, attributes: [NSAttributedString.Key.foregroundColor : Constants.colors.lightGrey])
-        setValue("Отмена", forKey: "cancelButtonText")
+        setValue( Constants.strings.cancelButtonTextValue, forKey: Constants.strings.cancelButtonTextKey)
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([.font : Constants.fonts.searchBarCancel], for: .normal
         )
         searchTextField.font = Constants.fonts.searchBar

@@ -7,9 +7,9 @@
 
 import UIKit
 
-class CallManager {
+class CallService {
     
-    static let shared = CallManager()
+    static let shared = CallService()
     
     func callNumber(phoneNumber: String) {
         guard let url = URL(string: "tel://\(phoneNumber)"),

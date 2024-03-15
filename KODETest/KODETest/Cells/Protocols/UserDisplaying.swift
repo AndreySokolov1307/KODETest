@@ -21,9 +21,9 @@ extension UserDisplaying {
         nameLabel.text = user.fullName
         positionLabel.text = user.position
         userTagLabel.text = user.userTag.lowercased()
-        avatarImageView.image = Constants.images.stub
+         avatarImageView.image = Constants.images.stub
         if let date = user.birthdayDate {
-            birthDateLabel.text = DateFormatterService().shortFormater.string(from: date)
+            birthDateLabel.text = DateFormatterManager().shortFormater.string(from: date)
         }
         guard let url = URL(string: user.avatarUrl) else { return }
         
@@ -31,6 +31,7 @@ extension UserDisplaying {
             let image = try await networkService.fetchImage(from: url)
             avatarImageView.image = image
         } catch {
+            avatarImageView.image = Constants.images.stub
             print(error.localizedDescription)
         }
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SortOptionView: UIView {
+class OptionView: UIView {
     
     @UseAutolayout var optionImageView: UIImageView = .style {
         $0.image = Constants.images.sortPlain
@@ -41,10 +41,10 @@ class SortOptionView: UIView {
         NSLayoutConstraint.activate([
             optionImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             optionImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            optionImageView.heightAnchor.constraint(equalToConstant: Constants.layout.sortAlphabetButtonHeight),
-            optionImageView.widthAnchor.constraint(equalToConstant: Constants.layout.sortAlphabetButtonWidth),
+            optionImageView.heightAnchor.constraint(equalToConstant: Constants.layout.optionImageHeight),
+            optionImageView.widthAnchor.constraint(equalToConstant: Constants.layout.optionViewHeight),
             
-            optionLabel.leadingAnchor.constraint(equalTo: optionImageView.trailingAnchor, constant: 12),
+            optionLabel.leadingAnchor.constraint(equalTo: optionImageView.trailingAnchor, constant: Constants.layout.optionLabelLeading),
             optionLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }

@@ -37,22 +37,22 @@ class DetailUserView: UIView {
         addSubview(backButton)
         
         NSLayoutConstraint.activate([
-            backButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            backButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
-            backButton.heightAnchor.constraint(equalToConstant: 24),
-            backButton.widthAnchor.constraint(equalToConstant: 24),
+            backButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.layout.detailBackButtonLeading),
+            backButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.layout.detailBackButtonTop),
+            backButton.heightAnchor.constraint(equalToConstant: Constants.layout.detailBackButtonSide),
+            backButton.widthAnchor.constraint(equalToConstant: Constants.layout.detailBackButtonSide),
             
             userInfoView.leadingAnchor.constraint(equalTo: leadingAnchor),
             userInfoView.topAnchor.constraint(equalTo: topAnchor),
             userInfoView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            userBirthInfoView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            userBirthInfoView.topAnchor.constraint(equalTo: userInfoView.bottomAnchor, constant: 8),
-            userBirthInfoView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            userBirthInfoView.heightAnchor.constraint(equalToConstant: 60),
+            userBirthInfoView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.layout.birthInfoViewLeading),
+            userBirthInfoView.topAnchor.constraint(equalTo: userInfoView.bottomAnchor, constant: Constants.layout.birthInfoTop),
+            userBirthInfoView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.layout.birthDateLabelTrailing),
+            userBirthInfoView.heightAnchor.constraint(equalToConstant: Constants.layout.birthInfoHeight),
             
-            userPhoneNumberView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            userPhoneNumberView.topAnchor.constraint(equalTo: userBirthInfoView.bottomAnchor, constant: 6),
+            userPhoneNumberView.leadingAnchor.constraint(equalTo: userBirthInfoView.leadingAnchor),
+            userPhoneNumberView.topAnchor.constraint(equalTo: userBirthInfoView.bottomAnchor, constant: Constants.layout.phoneInfoTop),
             userPhoneNumberView.heightAnchor.constraint(equalTo: userBirthInfoView.heightAnchor),
             userPhoneNumberView.trailingAnchor.constraint(equalTo: userPhoneNumberView.infoLabel.trailingAnchor),
         ])

@@ -37,7 +37,7 @@ class NetworkService: INetworkService {
     }
     
     func fetchImage(from url: URL) async throws -> UIImage? {
-        if let cachedImage = ImageCache.shared.getImage(for: url) {
+        if let cachedImage = ImageCacheManager.shared.getImage(for: url) {
             return cachedImage
         } else {
             let (data, response) = try await URLSession.shared.data(from: url)
@@ -49,7 +49,7 @@ class NetworkService: INetworkService {
             guard let image = UIImage(data: data) else {
                 throw NetworkErrors.imageDataMissing
             }
-            ImageCache.shared.saveImage(image, withURL: url)
+            ImageCacheManager.shared.saveImage(image, withURL: url)
             return image
         }
     }

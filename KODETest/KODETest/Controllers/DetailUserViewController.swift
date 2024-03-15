@@ -50,7 +50,7 @@ final class DetailUserViewController: UIViewController {
         detailUserView.userInfoView.positionLabel.text = user.position
         detailUserView.userInfoView.userTagLabel.text = user.userTag.lowercased()
         
-        detailUserView.userBirthInfoView.infoLabel.text = DateFormatterService().dayMonthYearFormatter.string(from: user.birthdayDate!)
+        detailUserView.userBirthInfoView.infoLabel.text = DateFormatterManager().dayMonthYearFormatter.string(from: user.birthdayDate!)
         detailUserView.userBirthInfoView.extraInfoLabel.text = user.getAgeFromatted()
         
         detailUserView.userPhoneNumberView.infoLabel.text = user.phone
@@ -69,9 +69,9 @@ final class DetailUserViewController: UIViewController {
         let makePhoneCallAction = UIAlertAction(title: user.phone,
                                                 style: .default,
                                             handler: { _ in
-            CallManager.shared.callNumber(phoneNumber: self.user.phone)
+            CallService.shared.callNumber(phoneNumber: self.user.phone)
         })
-        let cancelAction = UIAlertAction(title: "Отмена",
+        let cancelAction = UIAlertAction(title: Constants.strings.cancelActionTitle,
                                          style: .cancel)
         presentActionSheetAlert(title: nil,
                                 message: nil,
