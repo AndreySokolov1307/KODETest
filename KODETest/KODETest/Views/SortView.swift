@@ -9,31 +9,12 @@ import UIKit
 
 class SortView: UIView {
     
-    @UseAutolayout var sortAlphabetButton = SortButton()
-    @UseAutolayout var sortBirthdayButton = SortButton()
-    
-    var sortAplphabelLabel: UILabel = .style {
-        $0.text = Constants.strings.sortAlphabet
-        $0.font = Constants.fonts.sortLabel
+    @UseAutolayout var alphabetOptionView: SortOptionView = .style {
+        $0.optionLabel.text = Constants.strings.sortAlphabet
     }
-    
-    var sortBirthdayLabel: UILabel = .style {
-        $0.text = Constants.strings.sortBirthday
-        $0.font = Constants.fonts.sortLabel
-    }
-    
-    @UseAutolayout var topHStack: UIStackView = .style {
-        $0.axis = .horizontal
-        $0.spacing = 12
-        $0.distribution = .fill
-        $0.alignment = .center
-    }
-    
-    @UseAutolayout var bottomHStack: UIStackView = .style {
-        $0.axis = .horizontal
-        $0.spacing = 12
-        $0.distribution = .fill
-        $0.alignment = .center
+
+    @UseAutolayout var birthdayOptionView: SortOptionView = .style {
+        $0.optionLabel.text = Constants.strings.sortBirthday
     }
     
     override init(frame: CGRect) {
@@ -47,28 +28,19 @@ class SortView: UIView {
     
     private func configureView() {
         backgroundColor = Constants.colors.white
-        addSubview(topHStack)
-        addSubview(bottomHStack)
-        topHStack.addArrangedSubview(sortAlphabetButton)
-        topHStack.addArrangedSubview(sortAplphabelLabel)
-        bottomHStack.addArrangedSubview(sortBirthdayButton)
-        bottomHStack.addArrangedSubview(sortBirthdayLabel)
+        addSubview(alphabetOptionView)
+        addSubview(birthdayOptionView)
         
         NSLayoutConstraint.activate([
-            sortAlphabetButton.heightAnchor.constraint(equalToConstant: Constants.layout.sortAlphabetButtonHeight),
-            sortAlphabetButton.widthAnchor.constraint(equalToConstant: Constants.layout.sortAlphabetButtonWidth),
-            sortBirthdayButton.heightAnchor.constraint(equalTo: sortAlphabetButton.heightAnchor),
-            sortBirthdayButton.widthAnchor.constraint(equalTo: sortAlphabetButton.widthAnchor),
+            alphabetOptionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
+            alphabetOptionView.trailingAnchor.constraint(equalTo: alphabetOptionView.optionLabel.trailingAnchor),
+            alphabetOptionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8),
+            alphabetOptionView.heightAnchor.constraint(equalToConstant: 60),
             
-            topHStack.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.layout.topHStackTop),
-            topHStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.layout.topHStackLeading),
-            topHStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.layout.topHstackTrailing),
-            topHStack.heightAnchor.constraint(equalToConstant: Constants.layout.topHstackHeight),
-            
-            bottomHStack.topAnchor.constraint(equalTo: topHStack.bottomAnchor),
-            bottomHStack.leadingAnchor.constraint(equalTo: topHStack.leadingAnchor),
-            bottomHStack.trailingAnchor.constraint(equalTo: topHStack.trailingAnchor),
-            bottomHStack.heightAnchor.constraint(equalTo: topHStack.heightAnchor),
+            birthdayOptionView.leadingAnchor.constraint(equalTo: alphabetOptionView.leadingAnchor),
+            birthdayOptionView.topAnchor.constraint(equalTo: alphabetOptionView.bottomAnchor),
+            birthdayOptionView.trailingAnchor.constraint(equalTo: birthdayOptionView.optionLabel.trailingAnchor),
+            birthdayOptionView.heightAnchor.constraint(equalTo: alphabetOptionView.heightAnchor)
         ])
     }
 }

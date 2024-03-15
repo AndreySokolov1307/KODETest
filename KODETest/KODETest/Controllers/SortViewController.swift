@@ -55,23 +55,24 @@ final class SortViewController: UIViewController {
     }
     
     private func setupButtons() {
-        sortView.sortAlphabetButton.addTarget(self, action: #selector(didTapAlphabetButton(_:)), for: .touchUpInside)
-        sortView.sortBirthdayButton.addTarget(self, action: #selector(didTapBirthDayButton(_:)), for: .touchUpInside)
-        sortView.sortAlphabetButton.isSelected = sortType == .alphabet ? true : false
-        sortView.sortBirthdayButton.isSelected = sortType == .birthday ? true : false
+        let alphabetTap = UITapGestureRecognizer(target: self, action: #selector( didTapAlphabetView(_:)))
+        let birthdayTap = UITapGestureRecognizer(target: self, action: #selector(didTapBirthdayButton(_:)))
+        sortView.alphabetOptionView.addGestureRecognizer(alphabetTap)
+        sortView.birthdayOptionView.addGestureRecognizer(birthdayTap)
+        sortType == .alphabet ? sortView.alphabetOptionView.toSelectedState() : sortView.birthdayOptionView.toSelectedState()
     }
     
-    @objc func didTapAlphabetButton(_ sender: SortButton) {
-        sender.isSelected = true
-        sortView.sortBirthdayButton.isSelected = false
+    @objc func didTapAlphabetView(_ sender: UITapGestureRecognizer) {
+        sortView.alphabetOptionView.toSelectedState()
+        sortView.birthdayOptionView.toNormalState()
         sortType = .alphabet
         delegate?.didChooseSortType(sortType)
         dismiss(animated: true)
     }
     
-    @objc func didTapBirthDayButton(_ sender: SortButton) {
-        sender.isSelected = true
-        sortView.sortAlphabetButton.isSelected = false
+    @objc func didTapBirthdayButton(_ sender: UITapGestureRecognizer) {
+        sortView.alphabetOptionView.toNormalState()
+        sortView.birthdayOptionView.toSelectedState()
         sortType = .birthday
         delegate?.didChooseSortType(sortType)
         dismiss(animated: true)
