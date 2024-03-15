@@ -54,6 +54,7 @@ class DetailUserView: UIView {
             userPhoneNumberView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             userPhoneNumberView.topAnchor.constraint(equalTo: userBirthInfoView.bottomAnchor, constant: 6),
             userPhoneNumberView.heightAnchor.constraint(equalTo: userBirthInfoView.heightAnchor),
+            userPhoneNumberView.trailingAnchor.constraint(equalTo: userPhoneNumberView.infoLabel.trailingAnchor),
         ])
     }
 }

@@ -60,6 +60,22 @@ final class DetailUserViewController: UIViewController {
     
     private func addTargets() {
         detailUserView.backButton.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapPhoneView(_:)))
+        detailUserView.isUserInteractionEnabled = true
+        detailUserView.userPhoneNumberView.addGestureRecognizer(tap)
+    }
+    
+    @objc func didTapPhoneView(_ sender: UITapGestureRecognizer) {
+        let makePhoneCallAction = UIAlertAction(title: user.phone,
+                                                style: .default,
+                                            handler: { _ in
+            CallManager.shared.callNumber(phoneNumber: self.user.phone)
+        })
+        let cancelAction = UIAlertAction(title: "Отмена",
+                                         style: .cancel)
+        presentActionSheetAlert(title: nil,
+                                message: nil,
+                                actions: [makePhoneCallAction, cancelAction])
     }
     
     @objc private func didTapBackButton() {

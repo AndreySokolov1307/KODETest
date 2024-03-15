@@ -25,6 +25,8 @@
 		323FB2522B9F2D54005D6292 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323FB2512B9F2D54005D6292 /* ImageCache.swift */; };
 		326665BA2BA09A130084DB7E /* DateFormatterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326665B92BA09A130084DB7E /* DateFormatterService.swift */; };
 		3268F3C22BA1C7A500D1E1EF /* Date+MonthDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3268F3C12BA1C7A500D1E1EF /* Date+MonthDay.swift */; };
+		328945182BA33BE4000018DF /* UIViewVontroller+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328945172BA33BE4000018DF /* UIViewVontroller+Alert.swift */; };
+		3289451A2BA35C67000018DF /* CallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328945192BA35C67000018DF /* CallManager.swift */; };
 		328F11272BA1CCE800A2D9D0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328F11262BA1CCE800A2D9D0 /* HeaderView.swift */; };
 		328F112B2BA1F2E700A2D9D0 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328F112A2BA1F2E700A2D9D0 /* UserInfoView.swift */; };
 		328F112D2BA1F77100A2D9D0 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328F112C2BA1F77100A2D9D0 /* InfoView.swift */; };
@@ -69,6 +71,8 @@
 		323FB2512B9F2D54005D6292 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		326665B92BA09A130084DB7E /* DateFormatterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterService.swift; sourceTree = "<group>"; };
 		3268F3C12BA1C7A500D1E1EF /* Date+MonthDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+MonthDay.swift"; sourceTree = "<group>"; };
+		328945172BA33BE4000018DF /* UIViewVontroller+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewVontroller+Alert.swift"; sourceTree = "<group>"; };
+		328945192BA35C67000018DF /* CallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallManager.swift; sourceTree = "<group>"; };
 		328F11262BA1CCE800A2D9D0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		328F112A2BA1F2E700A2D9D0 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		328F112C2BA1F77100A2D9D0 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
@@ -137,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				326665B92BA09A130084DB7E /* DateFormatterService.swift */,
+				328945192BA35C67000018DF /* CallManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 				32C090402B9CD0AE000274EB /* UIVIew+Style.swift */,
 				32C090422B9CD0E9000274EB /* Autolayout+PropertyWrapper.swift */,
 				3268F3C12BA1C7A500D1E1EF /* Date+MonthDay.swift */,
+				328945172BA33BE4000018DF /* UIViewVontroller+Alert.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -356,6 +362,7 @@
 			files = (
 				328F112F2BA1FA0000A2D9D0 /* DetailUserView.swift in Sources */,
 				323078BE2B9F5DCD0085DDCE /* SortButton.swift in Sources */,
+				328945182BA33BE4000018DF /* UIViewVontroller+Alert.swift in Sources */,
 				32C090312B9CB1A8000274EB /* NetworkService.swift in Sources */,
 				323078C02B9F65680085DDCE /* SortViewController.swift in Sources */,
 				32C090432B9CD0E9000274EB /* Autolayout+PropertyWrapper.swift in Sources */,
@@ -364,6 +371,7 @@
 				323078CE2B9F83D90085DDCE /* Colors.swift in Sources */,
 				326665BA2BA09A130084DB7E /* DateFormatterService.swift in Sources */,
 				32C090112B9C8536000274EB /* ListViewController.swift in Sources */,
+				3289451A2BA35C67000018DF /* CallManager.swift in Sources */,
 				323078BC2B9F5C940085DDCE /* SortView.swift in Sources */,
 				32C0900D2B9C8536000274EB /* AppDelegate.swift in Sources */,
 				32C090392B9CB1E2000274EB /* IEndpoint.swift in Sources */,

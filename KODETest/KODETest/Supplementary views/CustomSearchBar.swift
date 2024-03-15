@@ -23,7 +23,7 @@ class CustomSearchBar: UISearchBar {
         
         searchTextField.layer.cornerRadius = Constants.layout.seatchTextFieldCornerRadius
         searchTextField.layer.masksToBounds = true
-        searchTextField.placeholder = Constants.strings.searchBarPlaceholder
+        searchTextField.attributedPlaceholder = NSAttributedString(string: Constants.strings.searchBarPlaceholder, attributes: [NSAttributedString.Key.foregroundColor : Constants.colors.lightGrey])
         searchTextField.font = Constants.fonts.searchBar
         tintColor = Constants.colors.purple
         searchTextField.backgroundColor = Constants.colors.lightGrey2
