@@ -27,13 +27,9 @@ struct User: Codable {
     }
     
     func getAgeFromatted() -> String {
-        let now = Date()
         let dcf = DateComponentsFormatter()
         dcf.allowedUnits = .year
         dcf.unitsStyle = .full
-//        let calendar = Calendar.current
-//        let ageComponents = calendar.dateComponents([.year], from: birthdayDate!, to: now)
-//        let age = ageComponents.year!
         let age = dcf.string(from: birthdayDate!, to: Date())
         return age!
     }
