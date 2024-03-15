@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		323078BC2B9F5C940085DDCE /* SortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323078BB2B9F5C940085DDCE /* SortView.swift */; };
-		323078BE2B9F5DCD0085DDCE /* SortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323078BD2B9F5DCD0085DDCE /* SortButton.swift */; };
 		323078C02B9F65680085DDCE /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323078BF2B9F65680085DDCE /* SortViewController.swift */; };
 		323078C22B9F68240085DDCE /* SortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323078C12B9F68240085DDCE /* SortType.swift */; };
 		323078C42B9F7DED0085DDCE /* EmptySearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323078C32B9F7DED0085DDCE /* EmptySearchView.swift */; };
@@ -25,6 +24,7 @@
 		323FB2522B9F2D54005D6292 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323FB2512B9F2D54005D6292 /* ImageCache.swift */; };
 		326665BA2BA09A130084DB7E /* DateFormatterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326665B92BA09A130084DB7E /* DateFormatterService.swift */; };
 		3268F3C22BA1C7A500D1E1EF /* Date+MonthDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3268F3C12BA1C7A500D1E1EF /* Date+MonthDay.swift */; };
+		327564A62BA46BBB00A3D126 /* SortOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327564A52BA46BBB00A3D126 /* SortOptionView.swift */; };
 		328945182BA33BE4000018DF /* UIViewVontroller+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328945172BA33BE4000018DF /* UIViewVontroller+Alert.swift */; };
 		3289451A2BA35C67000018DF /* CallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328945192BA35C67000018DF /* CallManager.swift */; };
 		328F11272BA1CCE800A2D9D0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328F11262BA1CCE800A2D9D0 /* HeaderView.swift */; };
@@ -54,7 +54,6 @@
 
 /* Begin PBXFileReference section */
 		323078BB2B9F5C940085DDCE /* SortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortView.swift; sourceTree = "<group>"; };
-		323078BD2B9F5DCD0085DDCE /* SortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortButton.swift; sourceTree = "<group>"; };
 		323078BF2B9F65680085DDCE /* SortViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewController.swift; sourceTree = "<group>"; };
 		323078C12B9F68240085DDCE /* SortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortType.swift; sourceTree = "<group>"; };
 		323078C32B9F7DED0085DDCE /* EmptySearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySearchView.swift; sourceTree = "<group>"; };
@@ -71,6 +70,7 @@
 		323FB2512B9F2D54005D6292 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		326665B92BA09A130084DB7E /* DateFormatterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterService.swift; sourceTree = "<group>"; };
 		3268F3C12BA1C7A500D1E1EF /* Date+MonthDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+MonthDay.swift"; sourceTree = "<group>"; };
+		327564A52BA46BBB00A3D126 /* SortOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOptionView.swift; sourceTree = "<group>"; };
 		328945172BA33BE4000018DF /* UIViewVontroller+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewVontroller+Alert.swift"; sourceTree = "<group>"; };
 		328945192BA35C67000018DF /* CallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallManager.swift; sourceTree = "<group>"; };
 		328F11262BA1CCE800A2D9D0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -248,10 +248,10 @@
 				32C090462B9CE038000274EB /* ScopeButton.swift */,
 				32C090482B9CE16B000274EB /* ScopeBar.swift */,
 				32C0904C2B9D1DEF000274EB /* CustomSearchBar.swift */,
-				323078BD2B9F5DCD0085DDCE /* SortButton.swift */,
 				328F11262BA1CCE800A2D9D0 /* HeaderView.swift */,
 				328F112A2BA1F2E700A2D9D0 /* UserInfoView.swift */,
 				328F112C2BA1F77100A2D9D0 /* InfoView.swift */,
+				327564A52BA46BBB00A3D126 /* SortOptionView.swift */,
 			);
 			path = "Supplementary views";
 			sourceTree = "<group>";
@@ -361,7 +361,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				328F112F2BA1FA0000A2D9D0 /* DetailUserView.swift in Sources */,
-				323078BE2B9F5DCD0085DDCE /* SortButton.swift in Sources */,
 				328945182BA33BE4000018DF /* UIViewVontroller+Alert.swift in Sources */,
 				32C090312B9CB1A8000274EB /* NetworkService.swift in Sources */,
 				323078C02B9F65680085DDCE /* SortViewController.swift in Sources */,
@@ -379,6 +378,7 @@
 				328F112D2BA1F77100A2D9D0 /* InfoView.swift in Sources */,
 				323078CA2B9F83C50085DDCE /* Images.swift in Sources */,
 				323078C62B9F83B00085DDCE /* Strings.swift in Sources */,
+				327564A62BA46BBB00A3D126 /* SortOptionView.swift in Sources */,
 				32C090412B9CD0AE000274EB /* UIVIew+Style.swift in Sources */,
 				32C090492B9CE16B000274EB /* ScopeBar.swift in Sources */,
 				328F11312BA1FC5D00A2D9D0 /* DetailUserViewController.swift in Sources */,

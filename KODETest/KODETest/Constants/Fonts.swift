@@ -25,5 +25,6 @@ extension Constants {
         static let detailUserTagLabel = UIFont.systemFont(ofSize: 17, weight: .regular)
         static let detailSubtitleLabel = UIFont.systemFont(ofSize: 16, weight: .regular)
         static let infoLabel = UIFont.systemFont(ofSize: 16, weight: .medium)
+        static let searchBarCancel = UIFont.systemFont(ofSize: 16, weight: .semibold)
     }
 }

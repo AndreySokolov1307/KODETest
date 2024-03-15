@@ -179,7 +179,6 @@ class ListViewController: UIViewController {
     @objc func didTapScopeButton(sender: ScopeButton) {
         listView.scopeBar.selectedButton = sender
         if let text = searchBar.text {
-            print(text, listView.scopeBar.selectedDepartment)
             updateSearchResult(with: text, department: listView.scopeBar.selectedDepartment)
         }
     }
@@ -257,6 +256,7 @@ extension ListViewController: UITableViewDelegate {
             user = usersFilteredSortedNextYear[indexPath.row]
         }
         navigationController?.pushViewController(DetailUserViewController(user: user, networkService: networkService), animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
