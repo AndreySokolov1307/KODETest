@@ -92,21 +92,19 @@ final class ListViewController: UIViewController {
         if sortType == .alphabet {
             dataSourceManager.filteredSortedUsers = filterManager.filter(dataSourceManager.sortedUsers,
                                                                          withSearchTerm: searchTerm,
-                                                                         department: department,
-                                                                         sortType: sortType)
-            
+                                                                         department: department)
+                                                                         
             listView.tableView.backgroundView?.isHidden = dataSourceManager.filteredSortedUsers.isEmpty ? false : true
             listView.tableView.reloadSections(dataSourceManager.sectionIndexSet, with: .none)
         } else {
             dataSourceManager.usersFilteredSortedThisYear = filterManager.filter(dataSourceManager.usersThisYear,
                                                                                  withSearchTerm: searchTerm,
-                                                                                 department: department,
-                                                                                 sortType: sortType)
-            
+                                                                                 department: department)
+                                                                                
             dataSourceManager.usersFilteredSortedNextYear = filterManager.filter(dataSourceManager.usersNextYear,
                                                                                  withSearchTerm: searchTerm,
-                                                                                 department: department,
-                                                                                 sortType: sortType)
+                                                                                 department: department)
+                                                                                 
             listView.tableView.backgroundView?.isHidden = dataSourceManager.usersFilteredSortedThisYear.isEmpty && dataSourceManager.usersFilteredSortedNextYear.isEmpty ? false : true
             listView.tableView.reloadSections(dataSourceManager.sectionIndexSet, with: .fade)
         }        

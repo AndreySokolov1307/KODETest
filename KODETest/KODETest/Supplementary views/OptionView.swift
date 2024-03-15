@@ -41,8 +41,8 @@ class OptionView: UIView {
         NSLayoutConstraint.activate([
             optionImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             optionImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            optionImageView.heightAnchor.constraint(equalToConstant: Constants.layout.optionImageHeight),
-            optionImageView.widthAnchor.constraint(equalToConstant: Constants.layout.optionViewHeight),
+            optionImageView.heightAnchor.constraint(equalToConstant: Constants.layout.optionImageSide),
+            optionImageView.widthAnchor.constraint(equalToConstant: Constants.layout.optionImageSide),
             
             optionLabel.leadingAnchor.constraint(equalTo: optionImageView.trailingAnchor, constant: Constants.layout.optionLabelLeading),
             optionLabel.centerYAnchor.constraint(equalTo: centerYAnchor),

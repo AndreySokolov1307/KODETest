@@ -7,8 +7,7 @@
 
 import UIKit
 
-class CallService {
-    
+final class CallService {
     static let shared = CallService()
     
     func callNumber(phoneNumber: String) {

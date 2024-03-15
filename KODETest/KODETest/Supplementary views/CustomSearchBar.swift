@@ -19,11 +19,10 @@ class CustomSearchBar: UISearchBar {
     }
     
     private func configureView() {
-        //TODO: - Download INTER font
-        
         searchTextField.layer.cornerRadius = Constants.layout.seatchTextFieldCornerRadius
         searchTextField.layer.masksToBounds = true
-        searchTextField.attributedPlaceholder = NSAttributedString(string: Constants.strings.searchBarPlaceholder, attributes: [NSAttributedString.Key.foregroundColor : Constants.colors.lightGrey])
+        searchTextField.attributedPlaceholder = NSAttributedString(string: Constants.strings.searchBarPlaceholder,
+                                                                   attributes: [NSAttributedString.Key.foregroundColor : Constants.colors.lightGrey])
         setValue( Constants.strings.cancelButtonTextValue, forKey: Constants.strings.cancelButtonTextKey)
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([.font : Constants.fonts.searchBarCancel], for: .normal
         )

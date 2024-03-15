@@ -21,7 +21,7 @@ extension UserDisplaying {
         nameLabel.text = user.fullName
         positionLabel.text = user.position
         userTagLabel.text = user.userTag.lowercased()
-         avatarImageView.image = Constants.images.stub
+        avatarImageView.image = Constants.images.stub
         if let date = user.birthdayDate {
             birthDateLabel.text = DateFormatterManager().shortFormater.string(from: date)
         }

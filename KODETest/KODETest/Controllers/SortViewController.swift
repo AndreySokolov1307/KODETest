@@ -88,7 +88,7 @@ extension SortViewController: UISheetPresentationControllerDelegate {
         if #available(iOS 16.0, *) {
             navigationItem.leftBarButtonItem?.isHidden = sheetPresentationController.selectedDetentIdentifier == .medium ? true : false
         } else {
-            // Fallback on earlier versions
+    
         }
         sheetPresentationController.prefersGrabberVisible = sheetPresentationController.selectedDetentIdentifier == .medium ? true : false
     }

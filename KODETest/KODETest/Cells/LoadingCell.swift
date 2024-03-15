@@ -49,8 +49,8 @@ class LoadingCell: UITableViewCell {
             avatarView.topAnchor.constraint(equalTo: topAnchor, constant: Constants.layout.avatarViewTop),
             avatarView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.layout.avatarViewLeading),
             avatarView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Constants.layout.avatarViewBottom),
-            avatarView.heightAnchor.constraint(equalToConstant: Constants.layout.avatarViewHeight),
-            avatarView.widthAnchor.constraint(equalToConstant: Constants.layout.avatarViewWidth),
+            avatarView.heightAnchor.constraint(equalToConstant: Constants.layout.avatarViewSide),
+            avatarView.widthAnchor.constraint(equalToConstant: Constants.layout.avatarViewSide),
             
             titleView.topAnchor.constraint(equalTo: topAnchor, constant: Constants.layout.titleViewTop),
             titleView.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: Constants.layout.titleViewLeading),

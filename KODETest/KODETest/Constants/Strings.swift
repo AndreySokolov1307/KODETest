@@ -11,7 +11,7 @@ extension Constants {
     enum strings {
         static let emptyString = ""
         static let space = " "
-        static let httpMethodGET: String = "GET"
+        static let httpMethodGET = "GET"
         static let baseURLString = "https://stoplight.io/mocks/kode-api/trainee-test/331141861"
         static let path = "/users"
         static let headers: [String : String] = [

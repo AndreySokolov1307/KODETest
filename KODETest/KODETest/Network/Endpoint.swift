@@ -15,8 +15,8 @@ class Endpoint: IEndpoint {
     var path: String = Constants.strings.path
     
     //Выбери ответ с сервера
-    var headers: [String : String] = Constants.strings.headers
-    //var headers: [String : String] = Constants.strings.errorHeaders
+    //var headers: [String : String] = Constants.strings.headers
+    var headers: [String : String] = Constants.strings.errorHeaders
 }
 
 

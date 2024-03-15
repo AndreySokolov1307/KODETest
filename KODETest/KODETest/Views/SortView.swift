@@ -34,7 +34,7 @@ class SortView: UIView {
         NSLayoutConstraint.activate([
             alphabetOptionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.layout.optionViewLeading),
             alphabetOptionView.trailingAnchor.constraint(equalTo: alphabetOptionView.optionLabel.trailingAnchor),
-            alphabetOptionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.layout.optionViewLeading),
+            alphabetOptionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.layout.optionViewTop),
             alphabetOptionView.heightAnchor.constraint(equalToConstant: Constants.layout.optionViewHeight),
             
             birthdayOptionView.leadingAnchor.constraint(equalTo: alphabetOptionView.leadingAnchor),

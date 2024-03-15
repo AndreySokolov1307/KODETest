@@ -13,9 +13,10 @@ enum NetworkErrors: Error {
     case imageDataMissing
 }
 
-class NetworkService: INetworkService {
+final class NetworkService: INetworkService {
     
     var endpoint: IEndpoint = Endpoint()
+    private lazy var imageCacheManager = ImageCacheManager()
     
     func fetchUsers() async throws -> [User] {
         guard let url = URL(string: endpoint.url) else {
@@ -37,7 +38,7 @@ class NetworkService: INetworkService {
     }
     
     func fetchImage(from url: URL) async throws -> UIImage? {
-        if let cachedImage = ImageCacheManager.shared.getImage(for: url) {
+        if let cachedImage = imageCacheManager.getImage(for: url) {
             return cachedImage
         } else {
             let (data, response) = try await URLSession.shared.data(from: url)
@@ -49,7 +50,7 @@ class NetworkService: INetworkService {
             guard let image = UIImage(data: data) else {
                 throw NetworkErrors.imageDataMissing
             }
-            ImageCacheManager.shared.saveImage(image, withURL: url)
+            imageCacheManager.saveImage(image, withURL: url)
             return image
         }
     }

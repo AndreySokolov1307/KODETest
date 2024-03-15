@@ -32,8 +32,7 @@ extension Constants {
         static let avatarViewTop: CGFloat = 6
         static let avatarViewLeading: CGFloat = 16
         static let avatarViewBottom: CGFloat = -6
-        static let avatarViewHeight: CGFloat = 72
-        static let avatarViewWidth: CGFloat = 72
+        static let avatarViewSide: CGFloat = 72
         static let titleViewTop: CGFloat = 25
         static let titleViewLeading: CGFloat = 16
         static let titleViewHeight: CGFloat = 16
@@ -52,10 +51,8 @@ extension Constants {
         static let birthDateLabelTrailing: CGFloat = -16
         static let errorVStackSpacing: CGFloat = 12
         static let errorVStackCustomSpasing: CGFloat = 8
-        static let errorImageWidth: CGFloat = 56
-        static let errorImageHeight: CGFloat = 56
-        static let optionImageHeight: CGFloat = 24
-        static let optionImageWidth: CGFloat = 24
+        static let errorImageSide: CGFloat = 56
+        static let optionImageSide: CGFloat = 24
         static let optionViewLeading: CGFloat = 24
         static let optionViewTop: CGFloat = 8
         static let optionLabelLeading: CGFloat = 12

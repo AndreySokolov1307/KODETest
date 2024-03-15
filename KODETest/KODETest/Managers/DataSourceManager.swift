@@ -36,7 +36,7 @@ extension DataSourceManager {
     }
 }
 
-class DataSourceManager {
+final class DataSourceManager {
     var sortType: SortType
     var didSet: (() -> Void)?
     var users = [User]() {

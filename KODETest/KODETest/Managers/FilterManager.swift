@@ -7,8 +7,7 @@
 
 import Foundation
 
-class FilterManager {
-    
+final class FilterManager {
     func isIncluded(_ user: User, searchTerm: String, department: String) -> Bool {
         if !searchTerm.isEmpty {
             if department == Department.all.title {
@@ -25,7 +24,7 @@ class FilterManager {
         }
     }
     
-    func filter(_ users: [User], withSearchTerm searchTerm: String, department: String, sortType: SortType) -> [User] {
+    func filter(_ users: [User], withSearchTerm searchTerm: String, department: String) -> [User] {
         var filteredUsers = [User]()
             filteredUsers = users.filter({ user in
                 return isIncluded(user, searchTerm: searchTerm, department: department)
