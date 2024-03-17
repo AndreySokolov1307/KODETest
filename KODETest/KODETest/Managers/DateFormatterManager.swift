@@ -7,8 +7,7 @@
 
 import Foundation
 
-class DateFormatterService {
-    static let shared =  DateFormatterService()
+class DateFormatterManager {
     
     private let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -22,12 +21,12 @@ class DateFormatterService {
     }
     
     var yearFormater: DateFormatter {
-        formatter.dateFormat = "yyyy"
+        formatter.dateFormat = Constants.strings.yearFormat
         return formatter
     }
     
     var dayMonthYearFormatter: DateFormatter {
-        formatter.dateFormat = "dd MMMM yyyy"
+        formatter.dateFormat = Constants.strings.dayMonthYearFormat
         return formatter
     }
     
@@ -35,6 +34,4 @@ class DateFormatterService {
         formatter.dateFormat = Constants.strings.regularDateFormat
         return formatter
     }
-    
-    
 }

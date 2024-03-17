@@ -56,8 +56,8 @@ class ErrorView: UIView {
         vStack.setCustomSpacing(Constants.layout.errorVStackCustomSpasing, after: imageView)
         
         NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalToConstant: Constants.layout.errorImageWidth),
-            imageView.heightAnchor.constraint(equalToConstant: Constants.layout.errorImageHeight),
+            imageView.widthAnchor.constraint(equalToConstant: Constants.layout.errorImageSide),
+            imageView.heightAnchor.constraint(equalToConstant: Constants.layout.errorImageSide),
             
             vStack.centerYAnchor.constraint(equalTo: centerYAnchor),
             vStack.centerXAnchor.constraint(equalTo: centerXAnchor),

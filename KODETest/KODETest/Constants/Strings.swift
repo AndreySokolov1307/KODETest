@@ -11,7 +11,7 @@ extension Constants {
     enum strings {
         static let emptyString = ""
         static let space = " "
-        static let httpMethodGET: String = "GET"
+        static let httpMethodGET = "GET"
         static let baseURLString = "https://stoplight.io/mocks/kode-api/trainee-test/331141861"
         static let path = "/users"
         static let headers: [String : String] = [
@@ -48,6 +48,10 @@ extension Constants {
         static let regularDateFormat = "yyyy-MM-dd"
         static let loadingCellReuseIdentifier = "LoadingCell"
         static let userCellReuseIdentifier = "UserCell"
-        
+        static let cancelActionTitle = "Отмена"
+        static let yearFormat = "yyyy"
+        static let dayMonthYearFormat = "dd MMMM yyyy"
+        static let cancelButtonTextValue = "Отмена"
+        static let cancelButtonTextKey = "cancelButtonText"
     }
 }

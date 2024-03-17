@@ -7,18 +7,7 @@
 
 import UIKit
 
-class ListViewController: UIViewController {
-    private enum Section {
-        case all, thisYear, nextYear
-        
-        static func getSections(_ sortType: SortType) -> [Section] {
-            if sortType == .alphabet {
-                return [.all]
-            } else {
-                return [.thisYear, .nextYear]
-            }
-        }
-    }
+final class ListViewController: UIViewController {
     private enum FetchResult {
         case success
         case failure
@@ -28,25 +17,12 @@ class ListViewController: UIViewController {
     private lazy var networkService = NetworkService()
     private let searchBar = CustomSearchBar()
     private var sortType: SortType = .alphabet
+    private lazy var dataSourceManager = DataSourceManager(sortType: sortType)
+    private var filterManager = FilterManager()
     private var isLoading = true
     private var searchTask: Task<Void, Never>? = nil
-    private var sections: [Section] {
-        Section.getSections(sortType)
-    }
-    private var users = [User]() {
-        didSet {
-            isLoading = false
-            listView.refreshControl.endRefreshing()
-        }
-    }
-
-    private var usersThisYear = [User]()
-    private var usersNextYear = [User]()
+    private var shouldIgnoreError = false
     
-    private var usersFilteredSortedThisYear = [User]()
-    private var usersFilteredSortedNextYear = [User]()
-    private var sortedUsers = [User]()
-    private var filteredSortedUsers = [User]()
  
     override func loadView() {
         view = listView
@@ -58,20 +34,32 @@ class ListViewController: UIViewController {
         setupScopeBar()
         setupTableView()
         setupErrorView()
+        setupDataSource()
         
         getUsers()
+    }
+    private func setupDataSource() {
+        dataSourceManager.didSet = { [weak self] in
+            self?.isLoading = false
+            self?.listView.refreshControl.endRefreshing()
+        }
     }
     
     private func getUsers() {
         searchTask = Task {
             do {
-                users = try await networkService.fetchUsers()
-                getUsersSorted()
+                dataSourceManager.users = try await networkService.fetchUsers()
+                dataSourceManager.getUsersSorted()
                 updateUI(with: .success)
                 updateSearchResult(with: searchBar.text, department: listView.scopeBar.selectedDepartment)
             } catch {
-                updateUI(with: .failure)
+                if !shouldIgnoreError {
+                    updateUI(with: .failure)
+                } else {
+                    listView.refreshControl.endRefreshing()
+                }
             }
+            shouldIgnoreError = false
         }
     }
     private func updateUI(with result: FetchResult) {
@@ -106,67 +94,27 @@ class ListViewController: UIViewController {
         listView.errorView.tryAgainButton.addTarget(self, action: #selector(didTapTryAgainButton), for: .touchUpInside)
     }
     
-    private func getUsersSorted() {
-        if sortType == .alphabet {
-            sortedUsers = []
-            sortedUsers = users.sorted { $0.fullName < $1.fullName }
-            filteredSortedUsers = sortedUsers
-        } else {
-            usersNextYear = []
-            usersThisYear = []
-            let sortedByDayUsers = users.sorted {  $0.birthdayDateForSort! < $1.birthdayDateForSort! }
-            for user in sortedByDayUsers {
-                if Date.MonthDay(date: user.birthdayDateForSort!) > Date.MonthDay(date: Date()) {
-                    usersThisYear.append(user)
-                } else {
-                    usersNextYear.append(user)
-                }
-            }
-            usersFilteredSortedThisYear = usersThisYear
-            usersFilteredSortedNextYear = usersNextYear
-        }
-    }
-    
-    private func filterUser(_ user: User, searchTerm: String) -> Bool {
-        if !searchTerm.isEmpty {
-            return user.fullName.localizedCaseInsensitiveContains(searchTerm) || user.userTag.localizedCaseInsensitiveContains(searchTerm)
-        } else {
-            return true
-        }
-    }
-    
     private func updateSearchResult(with searchTerm: String?, department: String) {
         guard let searchTerm = searchTerm else { return }
-            if sortType == .alphabet {
-                if department != Department.all.title {
-                    filteredSortedUsers = sortedUsers.filter({ user in
-                       return filterUser(user, searchTerm: searchTerm) && user.department.title == department
-                    })
-                } else {
-                    filteredSortedUsers = sortedUsers.filter({ user in
-                        return filterUser(user, searchTerm: searchTerm)
-                    })
-                }
-                listView.tableView.backgroundView?.isHidden = filteredSortedUsers.isEmpty ? false : true
-            } else {
-                if department != Department.all.title {
-                    usersFilteredSortedThisYear =  usersThisYear.filter { user in
-                        return filterUser(user, searchTerm: searchTerm) && user.department.title == department
-                    }
-                    usersFilteredSortedNextYear =  usersNextYear.filter { user in
-                        return filterUser(user, searchTerm: searchTerm) && user.department.title == department
-                    }
-                } else {
-                    usersFilteredSortedThisYear =  usersThisYear.filter { user in
-                        return filterUser(user, searchTerm: searchTerm)
-                    }
-                    usersFilteredSortedNextYear =  usersNextYear.filter { user in
-                        return filterUser(user, searchTerm: searchTerm)
-                    }
-                }
-                listView.tableView.backgroundView?.isHidden = usersFilteredSortedThisYear.isEmpty && usersFilteredSortedNextYear.isEmpty ? false : true
-            }
-        listView.tableView.reloadData()
+        if sortType == .alphabet {
+            dataSourceManager.filteredSortedUsers = filterManager.filter(dataSourceManager.sortedUsers,
+                                                                         withSearchTerm: searchTerm,
+                                                                         department: department)
+                                                                         
+            listView.tableView.backgroundView?.isHidden = dataSourceManager.filteredSortedUsers.isEmpty ? false : true
+            listView.tableView.reloadSections(dataSourceManager.sectionIndexSet, with: .none)
+        } else {
+            dataSourceManager.usersFilteredSortedThisYear = filterManager.filter(dataSourceManager.usersThisYear,
+                                                                                 withSearchTerm: searchTerm,
+                                                                                 department: department)
+                                                                                
+            dataSourceManager.usersFilteredSortedNextYear = filterManager.filter(dataSourceManager.usersNextYear,
+                                                                                 withSearchTerm: searchTerm,
+                                                                                 department: department)
+                                                                                 
+            listView.tableView.backgroundView?.isHidden = dataSourceManager.usersFilteredSortedThisYear.isEmpty && dataSourceManager.usersFilteredSortedNextYear.isEmpty ? false : true
+            listView.tableView.reloadSections(dataSourceManager.sectionIndexSet, with: .fade)
+        }        
     }
     
     @objc func didTapTryAgainButton() {
@@ -184,6 +132,8 @@ class ListViewController: UIViewController {
     }
     
     @objc func didPullRefreshControl(sender: UIRefreshControl) {
+        shouldIgnoreError = true
+        networkService.endpoint.headers = Constants.strings.errorHeaders
         getUsers()
     }
 }
@@ -192,26 +142,11 @@ class ListViewController: UIViewController {
 
 extension ListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        sections.count
+        dataSourceManager.sections.count
     }
-    
-    private func numberOfRows(for section: Section, isLoading: Bool) -> Int {
-        switch section {
-        case .all:
-            if isLoading {
-                return Constants.numbers.loadingTableViewRows
-            } else {
-                return filteredSortedUsers.count
-            }
-        case .thisYear:
-            return usersFilteredSortedThisYear.count
-        case .nextYear:
-            return usersFilteredSortedNextYear.count
-        }
-    }
-    
+        
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        numberOfRows(for: sections[section], isLoading: isLoading)
+        dataSourceManager.numberOfRows(for: dataSourceManager.sections[section], isLoading: isLoading)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -221,13 +156,13 @@ extension ListViewController: UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: UserCell.reuseIdentifier) as! UserCell
             let user: User
-            switch sections[indexPath.section] {
+            switch dataSourceManager.sections[indexPath.section] {
             case .all:
-                 user = filteredSortedUsers[indexPath.row]
+                user = dataSourceManager.filteredSortedUsers[indexPath.row]
             case .thisYear:
-                 user = usersFilteredSortedThisYear[indexPath.row]
+                user = dataSourceManager.usersFilteredSortedThisYear[indexPath.row]
             case .nextYear:
-                 user = usersFilteredSortedNextYear[indexPath.row]
+                user = dataSourceManager.usersFilteredSortedNextYear[indexPath.row]
             }
             Task {
                 await cell.configure(for: user, with: networkService)
@@ -247,21 +182,22 @@ extension ListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var user: User
-        switch sections[indexPath.section] {
+        switch dataSourceManager.sections[indexPath.section] {
         case .all:
-            user = filteredSortedUsers[indexPath.row]
+            user = dataSourceManager.filteredSortedUsers[indexPath.row]
         case .thisYear:
-            user = usersFilteredSortedThisYear[indexPath.row]
+            user = dataSourceManager.usersFilteredSortedThisYear[indexPath.row]
         case .nextYear:
-            user = usersFilteredSortedNextYear[indexPath.row]
+            user = dataSourceManager.usersFilteredSortedNextYear[indexPath.row]
         }
+        searchBar.resignFirstResponder()
         navigationController?.pushViewController(DetailUserViewController(user: user, networkService: networkService), animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard !usersFilteredSortedNextYear.isEmpty else { return nil }
-        if sections[section] == .nextYear {
+        guard !dataSourceManager.usersFilteredSortedNextYear.isEmpty else { return nil }
+        if dataSourceManager.sections[section] == .nextYear {
             let header = HeaderView()
             header.titleLabel.text = Constants.functions.getNextYearString()
             return header
@@ -271,8 +207,8 @@ extension ListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard !usersFilteredSortedNextYear.isEmpty else { return Constants.layout.sectionHeaderHeight }
-        if sections[section] == .nextYear {
+        guard !dataSourceManager.usersFilteredSortedNextYear.isEmpty else { return Constants.layout.sectionHeaderHeight }
+        if dataSourceManager.sections[section] == .nextYear {
             return Constants.layout.nextYearSectionHeaderHeight
         } else {
             return Constants.layout.sectionHeaderHeight
@@ -333,6 +269,7 @@ extension ListViewController: SortViewControllerDelegate {
     func didChooseSortType(_ sortType: SortType) {
         isLoading = true
         self.sortType = sortType
+        dataSourceManager.sortType = sortType
         switch sortType {
         case .alphabet:
             searchBar.setImage(Constants.images.listPlain, for: .bookmark, state: .normal)

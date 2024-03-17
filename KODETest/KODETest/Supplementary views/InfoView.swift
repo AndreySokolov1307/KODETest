@@ -38,13 +38,13 @@ class InfoView: UIView {
         NSLayoutConstraint.activate([
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: 24),
-            imageView.widthAnchor.constraint(equalToConstant: 24),
+            imageView.heightAnchor.constraint(equalToConstant: Constants.layout.infoViewImageSide),
+            imageView.widthAnchor.constraint(equalToConstant: Constants.layout.infoViewImageSide),
             
-            infoLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 12),
+            infoLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: Constants.layout.infoViewLabelLeading),
             infoLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             
-            extraInfoLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -4),
+            extraInfoLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.layout.infoViewExtraLabelTrailing),
             extraInfoLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }

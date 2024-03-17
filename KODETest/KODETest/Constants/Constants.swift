@@ -14,8 +14,7 @@ enum Constants {
             guard let newDate = calendar.date(byAdding: .year, value: 1, to: Date()) else {
                 return "Next year"
             }
-            let formatter = DateFormatterService()
-            return formatter.yearFormater.string(from: newDate)
+            return DateFormatterManager().yearFormater.string(from: newDate)
         }
     }
 }

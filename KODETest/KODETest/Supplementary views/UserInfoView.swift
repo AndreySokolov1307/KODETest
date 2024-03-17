@@ -10,24 +10,24 @@ import UIKit
 class UserInfoView: UIView {
     
     @UseAutolayout var avatarImageView: UIImageView = .style {
-        $0.layer.cornerRadius = 52
+        $0.layer.cornerRadius = Constants.layout.avatarImageCornerRadius
         $0.clipsToBounds = true
     }
     
     @UseAutolayout private var containerView: UIView = .style {
         $0.clipsToBounds = false
-        $0.layer.cornerRadius = 52
-        $0.layer.shadowOffset = CGSize(width: 0, height: 8)
-        $0.layer.shadowRadius = 8
+        $0.layer.cornerRadius = Constants.layout.avatarImageCornerRadius
+        $0.layer.shadowOffset = Constants.layout.containerViewShadowOffset
+        $0.layer.shadowRadius = Constants.layout.containerViewShadowRadius
         $0.layer.shadowColor = Constants.colors.shadow?.cgColor
-        $0.layer.shadowOpacity = 0.16
+        $0.layer.shadowOpacity = Constants.layout.containerViewShadowOpacity
     }
     
     @UseAutolayout private var vStack: UIStackView = .style {
         $0.axis = .vertical
         $0.alignment = .center
         $0.distribution = .fill
-        $0.spacing = 12
+        $0.spacing = Constants.layout.userInfoVStackSpacing
     }
     
     var nameLabel: UILabel = .style {
@@ -49,7 +49,7 @@ class UserInfoView: UIView {
         $0.axis = .horizontal
         $0.distribution = .fillProportionally
         $0.alignment = .fill
-        $0.spacing = 4
+        $0.spacing = Constants.layout.userInfoHStackSpacing
     }
     
     override init(frame: CGRect) {
@@ -77,9 +77,9 @@ class UserInfoView: UIView {
         
         NSLayoutConstraint.activate([
             containerView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            containerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 24),
-            containerView.heightAnchor.constraint(equalToConstant: 104),
-            containerView.widthAnchor.constraint(equalToConstant: 104),
+            containerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.layout.containerViewTop),
+            containerView.heightAnchor.constraint(equalToConstant: Constants.layout.containerViewSide),
+            containerView.widthAnchor.constraint(equalToConstant: Constants.layout.containerViewSide),
             
             avatarImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             avatarImageView.topAnchor.constraint(equalTo: containerView.topAnchor),
@@ -87,13 +87,13 @@ class UserInfoView: UIView {
             avatarImageView.widthAnchor.constraint(equalTo: containerView.widthAnchor),
             
             positionLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            positionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),
+            positionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Constants.layout.positionLabelBottom),
         
             vStack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            vStack.bottomAnchor.constraint(equalTo: positionLabel.topAnchor, constant: -12),
-            vStack.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 24),
+            vStack.bottomAnchor.constraint(equalTo: positionLabel.topAnchor, constant: Constants.layout.userInfoVStackBottom),
+            vStack.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: Constants.layout.userInfoVStackTop),
             
-            heightAnchor.constraint(greaterThanOrEqualToConstant: 250)
+            heightAnchor.constraint(greaterThanOrEqualToConstant: Constants.layout.userInfoMinHeight)
         ])
     }
 }

@@ -35,13 +35,13 @@ struct User: Codable {
     }
     
     var birthdayDate: Date? {
-        return DateFormatterService.shared.regularFormatter.date(from: birthday)
+        return DateFormatterManager().regularFormatter.date(from: birthday)
     }
     
     var birthdayDateForSort: Date? {
         guard let date = birthdayDate else { return nil }
-        let string = DateFormatterService.shared.shortFormater.string(from: date)
-        return   DateFormatterService.shared.shortFormater.date(from: string)
+        let string = DateFormatterManager().shortFormater.string(from: date)
+        return   DateFormatterManager().shortFormater.date(from: string)
     }
 }
 
