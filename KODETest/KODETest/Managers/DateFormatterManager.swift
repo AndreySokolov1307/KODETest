@@ -34,6 +34,4 @@ class DateFormatterManager {
         formatter.dateFormat = Constants.strings.regularDateFormat
         return formatter
     }
-    
-    
 }

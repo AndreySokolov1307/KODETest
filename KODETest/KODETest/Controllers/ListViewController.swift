@@ -21,6 +21,8 @@ final class ListViewController: UIViewController {
     private var filterManager = FilterManager()
     private var isLoading = true
     private var searchTask: Task<Void, Never>? = nil
+    private var shouldIgnoreError = false
+    
  
     override func loadView() {
         view = listView
@@ -51,8 +53,13 @@ final class ListViewController: UIViewController {
                 updateUI(with: .success)
                 updateSearchResult(with: searchBar.text, department: listView.scopeBar.selectedDepartment)
             } catch {
-                updateUI(with: .failure)
+                if !shouldIgnoreError {
+                    updateUI(with: .failure)
+                } else {
+                    listView.refreshControl.endRefreshing()
+                }
             }
+            shouldIgnoreError = false
         }
     }
     private func updateUI(with result: FetchResult) {
@@ -125,6 +132,8 @@ final class ListViewController: UIViewController {
     }
     
     @objc func didPullRefreshControl(sender: UIRefreshControl) {
+        shouldIgnoreError = true
+        networkService.endpoint.headers = Constants.strings.errorHeaders
         getUsers()
     }
 }
