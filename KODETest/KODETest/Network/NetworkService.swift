@@ -1,10 +1,3 @@
-//
-//  NetworkService.swift
-//  KODETest
-//
-//  Created by Андрей Соколов on 09.03.2024.
-//
-
 import UIKit
 
 enum NetworkErrors: Error {
@@ -29,7 +22,7 @@ final class NetworkService: INetworkService {
         
         let (data, responce) = try await URLSession.shared.data(for: request)
         
-        guard let httpResponse = responce as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+        guard let httpResponse = responce as? HTTPURLResponse, httpResponse.statusCode == Constants.numbers.statusCodeSuccess else {
             throw NetworkErrors.usersNotFound
         }
         
@@ -43,7 +36,7 @@ final class NetworkService: INetworkService {
         } else {
             let (data, response) = try await URLSession.shared.data(from: url)
             
-            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == Constants.numbers.statusCodeSuccess else {
                 throw NetworkErrors.imageDataMissing
             }
             

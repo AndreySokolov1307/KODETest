@@ -1,10 +1,3 @@
-//
-//  SortViewController.swift
-//  KODETest
-//
-//  Created by Андрей Соколов on 11.03.2024.
-//
-
 import UIKit
 
 protocol SortViewControllerDelegate: AnyObject {
@@ -82,6 +75,8 @@ final class SortViewController: UIViewController {
         dismiss(animated: true)
     }
 }
+
+//MARK: - UISheetPresentationControllerDelegate
 
 extension SortViewController: UISheetPresentationControllerDelegate {
     func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController) {

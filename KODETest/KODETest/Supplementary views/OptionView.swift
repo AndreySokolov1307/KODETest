@@ -1,10 +1,3 @@
-//
-//  SortOptionView.swift
-//  KODETest
-//
-//  Created by Андрей Соколов on 15.03.2024.
-//
-
 import UIKit
 
 class OptionView: UIView {

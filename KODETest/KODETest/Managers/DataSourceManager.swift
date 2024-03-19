@@ -1,18 +1,11 @@
-//
-//  DataSourceManager.swift
-//  KODETest
-//
-//  Created by Андрей Соколов on 15.03.2024.
-//
-
 import Foundation
 
 extension DataSourceManager {
     enum Section {
         case all, thisYear, nextYear
         
-        static func getSections(_ sortType: SortType ) -> [Section] {
-            if sortType == .alphabet {
+        static func getSections(_ sortType: SortType, isLoading: Bool ) -> [Section] {
+            if sortType == .alphabet || isLoading {
                 return [.all]
             } else {
                 return [.thisYear, .nextYear]
@@ -20,7 +13,7 @@ extension DataSourceManager {
         }
     }
    
-    func numberOfRows(for section: Section, isLoading: Bool) -> Int {
+    func numberOfRows(for section: Section) -> Int {
         switch section {
         case .all:
             if isLoading {
@@ -42,8 +35,10 @@ final class DataSourceManager {
     var users = [User]() {
         didSet {
             didSet?()
+            isLoading = false
         }
     }
+    var isLoading: Bool = true
     var usersThisYear = [User]()
     var usersNextYear = [User]()
     var sortedUsers = [User]()
@@ -53,7 +48,7 @@ final class DataSourceManager {
     var filteredSortedUsers = [User]()
     
     var sections: [Section] {
-        Section.getSections(sortType)
+        Section.getSections(sortType, isLoading: isLoading)
     }
     
     var sectionIndexSet: IndexSet {

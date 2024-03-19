@@ -1,10 +1,3 @@
-//
-//  UserDisplaying.swift
-//  KODETest
-//
-//  Created by Андрей Соколов on 10.03.2024.
-//
-
 import UIKit
 
 protocol UserDisplaying {
@@ -17,7 +10,7 @@ protocol UserDisplaying {
 
 @MainActor
 extension UserDisplaying {
-    func configure(for user: User,with networkService: INetworkService) async {
+    func configure(for user: User, networkService: INetworkService) async {
         nameLabel.text = user.fullName
         positionLabel.text = user.position
         userTagLabel.text = user.userTag.lowercased()
@@ -30,6 +23,8 @@ extension UserDisplaying {
         do {
             let image = try await networkService.fetchImage(from: url)
             avatarImageView.image = image
+        } catch let error as NSError where error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
+            // ignore cancellation errors
         } catch {
             avatarImageView.image = Constants.images.stub
             print(error.localizedDescription)

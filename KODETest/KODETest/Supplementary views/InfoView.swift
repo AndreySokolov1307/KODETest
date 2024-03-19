@@ -1,10 +1,3 @@
-//
-//  InfoView.swift
-//  KODETest
-//
-//  Created by Андрей Соколов on 13.03.2024.
-//
-
 import UIKit
 
 class InfoView: UIView {

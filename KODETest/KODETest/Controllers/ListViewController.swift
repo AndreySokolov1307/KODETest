@@ -1,10 +1,3 @@
-//
-//  ListViewController.swift
-//  KODETest
-//
-//  Created by Андрей Соколов on 09.03.2024.
-//
-
 import UIKit
 
 final class ListViewController: UIViewController {
@@ -15,15 +8,14 @@ final class ListViewController: UIViewController {
     
     private lazy var listView = ListView()
     private lazy var networkService = NetworkService()
-    private let searchBar = CustomSearchBar()
-    private var sortType: SortType = .alphabet
     private lazy var dataSourceManager = DataSourceManager(sortType: sortType)
-    private var filterManager = FilterManager()
-    private var isLoading = true
+    private lazy var filterManager = FilterManager()
+    private lazy var searchBar = CustomSearchBar()
+    private var sortType: SortType = .alphabet
     private var searchTask: Task<Void, Never>? = nil
+    private var tableViewImageLoadTasks: [IndexPath: Task<Void, Never>] = [:]
     private var shouldIgnoreError = false
     
- 
     override func loadView() {
         view = listView
     }
@@ -38,20 +30,25 @@ final class ListViewController: UIViewController {
         
         getUsers()
     }
+    
     private func setupDataSource() {
         dataSourceManager.didSet = { [weak self] in
-            self?.isLoading = false
             self?.listView.refreshControl.endRefreshing()
         }
     }
     
     private func getUsers() {
+        tableViewImageLoadTasks.values.forEach { task in task.cancel() }
+        tableViewImageLoadTasks = [:]
+        searchTask?.cancel()
         searchTask = Task {
             do {
                 dataSourceManager.users = try await networkService.fetchUsers()
                 dataSourceManager.getUsersSorted()
                 updateUI(with: .success)
                 updateSearchResult(with: searchBar.text, department: listView.scopeBar.selectedDepartment)
+            } catch let error as NSError where error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
+                // ignore cancellation errors
             } catch {
                 if !shouldIgnoreError {
                     updateUI(with: .failure)
@@ -60,12 +57,16 @@ final class ListViewController: UIViewController {
                 }
             }
             shouldIgnoreError = false
+            searchTask = nil
         }
     }
     private func updateUI(with result: FetchResult) {
         listView.tableView.backgroundView?.isHidden = true
         navigationItem.titleView?.isHidden = result == .success ? false : true
         listView.errorView.isHidden =  result == .success ? true : false
+        if result == .success {
+            listView.tableView.reloadData()
+        }
     }
     
     private func setupTableView() {
@@ -113,14 +114,13 @@ final class ListViewController: UIViewController {
                                                                                  department: department)
                                                                                  
             listView.tableView.backgroundView?.isHidden = dataSourceManager.usersFilteredSortedThisYear.isEmpty && dataSourceManager.usersFilteredSortedNextYear.isEmpty ? false : true
-            listView.tableView.reloadSections(dataSourceManager.sectionIndexSet, with: .fade)
-        }        
+            listView.tableView.reloadSections(dataSourceManager.sectionIndexSet, with: .none)
+        }
     }
     
     @objc func didTapTryAgainButton() {
         listView.errorView.isHidden = true
         navigationItem.titleView?.isHidden = false
-        networkService.endpoint.headers = Constants.strings.headers
         getUsers()
     }
     
@@ -133,7 +133,6 @@ final class ListViewController: UIViewController {
     
     @objc func didPullRefreshControl(sender: UIRefreshControl) {
         shouldIgnoreError = true
-        networkService.endpoint.headers = Constants.strings.errorHeaders
         getUsers()
     }
 }
@@ -146,11 +145,11 @@ extension ListViewController: UITableViewDataSource {
     }
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        dataSourceManager.numberOfRows(for: dataSourceManager.sections[section], isLoading: isLoading)
+        dataSourceManager.numberOfRows(for: dataSourceManager.sections[section])
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if isLoading {
+        if dataSourceManager.isLoading {
             let cell = tableView.dequeueReusableCell(withIdentifier: LoadingCell.reuseIdentifier) as! LoadingCell
             return cell
         } else {
@@ -164,8 +163,9 @@ extension ListViewController: UITableViewDataSource {
             case .nextYear:
                 user = dataSourceManager.usersFilteredSortedNextYear[indexPath.row]
             }
-            Task {
-                await cell.configure(for: user, with: networkService)
+            tableViewImageLoadTasks[indexPath]?.cancel()
+            tableViewImageLoadTasks[indexPath] = Task {
+                await cell.configure(for: user, networkService: networkService)
             }
             cell.birthDateLabel.isHidden = sortType == .alphabet ? true : false
             return cell
@@ -246,6 +246,7 @@ extension ListViewController: UISearchBarDelegate {
     }
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        print(tableViewImageLoadTasks.count)
         showSortVCAsSheet()
     }
     
@@ -267,7 +268,7 @@ extension ListViewController: UISearchBarDelegate {
 
 extension ListViewController: SortViewControllerDelegate {
     func didChooseSortType(_ sortType: SortType) {
-        isLoading = true
+        dataSourceManager.isLoading = true
         self.sortType = sortType
         dataSourceManager.sortType = sortType
         switch sortType {

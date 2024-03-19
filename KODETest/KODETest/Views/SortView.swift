@@ -1,10 +1,3 @@
-//
-//  SortView.swift
-//  KODETest
-//
-//  Created by Андрей Соколов on 11.03.2024.
-//
-
 import UIKit
 
 class SortView: UIView {
@@ -32,7 +25,7 @@ class SortView: UIView {
         addSubview(birthdayOptionView)
         
         NSLayoutConstraint.activate([
-            alphabetOptionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.layout.optionViewLeading),
+            alphabetOptionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: Constants.layout.optionViewLeading),
             alphabetOptionView.trailingAnchor.constraint(equalTo: alphabetOptionView.optionLabel.trailingAnchor),
             alphabetOptionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.layout.optionViewTop),
             alphabetOptionView.heightAnchor.constraint(equalToConstant: Constants.layout.optionViewHeight),

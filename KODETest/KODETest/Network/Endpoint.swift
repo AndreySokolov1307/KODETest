@@ -1,10 +1,3 @@
-//
-//  Endpoint.swift
-//  KODETest
-//
-//  Created by Андрей Соколов on 09.03.2024.
-//
-
 import Foundation
 
 class Endpoint: IEndpoint {
@@ -14,7 +7,7 @@ class Endpoint: IEndpoint {
     
     var path: String = Constants.strings.path
     
-    //Выбери ответ с сервера
+    //Выбери headers
     var headers: [String : String] = Constants.strings.headers
     //var headers: [String : String] = Constants.strings.errorHeaders
 }

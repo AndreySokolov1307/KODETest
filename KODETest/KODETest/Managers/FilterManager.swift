@@ -1,10 +1,3 @@
-//
-//  FilterManager.swift
-//  KODETest
-//
-//  Created by Андрей Соколов on 15.03.2024.
-//
-
 import Foundation
 
 final class FilterManager {

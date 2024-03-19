@@ -1,10 +1,3 @@
-//
-//  ListView.swift
-//  KODETest
-//
-//  Created by Андрей Соколов on 09.03.2024.
-//
-
 import UIKit
 
 class ListView: UIView {
@@ -42,23 +35,23 @@ class ListView: UIView {
 
         NSLayoutConstraint.activate([
             scopeBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.layout.scopeBarTop),
-            scopeBar.leadingAnchor.constraint(equalTo: leadingAnchor),
-            scopeBar.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scopeBar.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            scopeBar.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             scopeBar.heightAnchor.constraint(equalToConstant: Constants.layout.scopeBarHeight),
             
             lineView.bottomAnchor.constraint(equalTo: scopeBar.bottomAnchor),
-            lineView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            lineView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            lineView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            lineView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             lineView.heightAnchor.constraint(equalToConstant: Constants.layout.lineViewHeihgt),
             
             tableView.topAnchor.constraint(equalTo: lineView.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             errorView.topAnchor.constraint(equalTo: topAnchor),
-            errorView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            errorView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            errorView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             errorView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }

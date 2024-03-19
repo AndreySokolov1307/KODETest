@@ -1,10 +1,3 @@
-//
-//  ShortDateFormatter.swift
-//  KODETest
-//
-//  Created by Андрей Соколов on 12.03.2024.
-//
-
 import Foundation
 
 class DateFormatterManager {

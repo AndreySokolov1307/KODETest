@@ -1,10 +1,3 @@
-//
-//  DetailUserView.swift
-//  KODETest
-//
-//  Created by Андрей Соколов on 13.03.2024.
-//
-
 import UIKit
 
 class DetailUserView: UIView {
@@ -37,7 +30,7 @@ class DetailUserView: UIView {
         addSubview(backButton)
         
         NSLayoutConstraint.activate([
-            backButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.layout.detailBackButtonLeading),
+            backButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: Constants.layout.detailBackButtonLeading),
             backButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.layout.detailBackButtonTop),
             backButton.heightAnchor.constraint(equalToConstant: Constants.layout.detailBackButtonSide),
             backButton.widthAnchor.constraint(equalToConstant: Constants.layout.detailBackButtonSide),
@@ -46,9 +39,9 @@ class DetailUserView: UIView {
             userInfoView.topAnchor.constraint(equalTo: topAnchor),
             userInfoView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            userBirthInfoView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.layout.birthInfoViewLeading),
+            userBirthInfoView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: Constants.layout.birthInfoViewLeading),
             userBirthInfoView.topAnchor.constraint(equalTo: userInfoView.bottomAnchor, constant: Constants.layout.birthInfoTop),
-            userBirthInfoView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.layout.birthDateLabelTrailing),
+            userBirthInfoView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: Constants.layout.birthDateLabelTrailing),
             userBirthInfoView.heightAnchor.constraint(equalToConstant: Constants.layout.birthInfoHeight),
             
             userPhoneNumberView.leadingAnchor.constraint(equalTo: userBirthInfoView.leadingAnchor),

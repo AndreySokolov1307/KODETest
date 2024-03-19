@@ -1,10 +1,3 @@
-//
-//  CallManager.swift
-//  KODETest
-//
-//  Created by Андрей Соколов on 14.03.2024.
-//
-
 import UIKit
 
 final class CallService {

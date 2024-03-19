@@ -1,10 +1,3 @@
-//
-//  Strings.swift
-//  KODETest
-//
-//  Created by Андрей Соколов on 11.03.2024.
-//
-
 import Foundation
 
 extension Constants {
@@ -16,11 +9,11 @@ extension Constants {
         static let path = "/users"
         static let headers: [String : String] = [
             "Content-Type": "application/json",
-            "Prefer" : "code=200, example=success"
+            "Prefer" : "code=200"
             ]
         static let errorHeaders: [String : String] = [
             "Content-Type": "application/json",
-            "Prefer" : "code=500, example=error-500"
+            "Prefer" : "code=500"
             ]
         static let all = "Все"
         static let android = "Android"

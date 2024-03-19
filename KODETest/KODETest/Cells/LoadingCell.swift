@@ -1,10 +1,3 @@
-//
-//  LoadingCell.swift
-//  KODETest
-//
-//  Created by Андрей Соколов on 10.03.2024.
-//
-
 import UIKit
 
 class LoadingCell: UITableViewCell {

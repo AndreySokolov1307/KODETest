@@ -1,10 +1,3 @@
-//
-//  EmptySearchView.swift
-//  KODETest
-//
-//  Created by Андрей Соколов on 11.03.2024.
-//
-
 import UIKit
 
 final class EmptySearchView: UIView {
